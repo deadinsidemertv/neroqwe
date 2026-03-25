@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Юки · портфолио</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0e;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            color: #e5e5f0;
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .header {
+            margin-bottom: 3rem;
+            border-bottom: 1px solid #2a2a33;
+            padding-bottom: 1.5rem;
+        }
+
+        .name {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #f0f0ff;
+        }
+
+        .sub {
+            color: #8a8aa8;
+            margin-top: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+            color: #c2c2ff;
+            border-left: 3px solid #6c63ff;
+            padding-left: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: #12121a;
+            border-radius: 1rem;
+            padding: 1.2rem 1.5rem;
+            border: 1px solid #252530;
+            transition: 0.2s;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #dbd9ff;
+        }
+
+        .card p {
+            color: #b9b9d0;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }
+
+        .card-buttons {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: #2a2a38;
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #ddd9ff;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn:hover {
+            background: #6c63ff;
+            color: #0a0a0e;
+        }
+
+        .badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 0.8rem 0 0.5rem;
+        }
+
+        .badge {
+            background: #20202a;
+            padding: 0.2rem 0.8rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #cbcbff;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .contact-link {
+            background: #1a1a24;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            color: #e0dcff;
+            font-weight: 500;
+            border: 1px solid #333344;
+            font-size: 0.9rem;
+        }
+
+        .contact-link:hover {
+            background: #6c63ff;
+            border-color: #6c63ff;
+            color: #0a0a0e;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #6a6a82;
+            margin-top: 3rem;
+        }
+
+        /* модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            background: #1a1a24;
+            border-radius: 1rem;
+            padding: 1rem;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            cursor: default;
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 0.5rem;
+            display: block;
+        }
+
+        .close-modal {
+            text-align: right;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #ccc;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 700px) {
+            .name { font-size: 2rem; }
+            .section-title { font-size: 1.3rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="name">yuki</div>
+        <div class="sub">программирование · творчество · competitive gaming</div>
+    </div>
+
+    <!-- =================== ПРОГРАММИРОВАНИЕ =================== -->
+    <div class="section">
+        <div class="section-title">разработка</div>
+        <div class="grid">
+            <div class="card">
+                <h3>GPU‑тензоры (C++ / DirectX 11)</h3>
+                <p>Библиотека тензорных выражений без CUDA, шейдеры для матричных операций, ReLU. Полный цикл управления памятью.</p>
+                <div class="card-buttons">
+                    <a href="https://github.com/ваш_аккаунт/GPUTensor" class="btn" target="_blank">GitHub</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Transformer & DQN</h3>
+                <p>Decoder‑only Transformer с RoPE, обучение и генерация. Deep Q Learning для Cookie Clicker с тепловой картой.</p>
+                <div class="card-buttons">
+                    <a href="https://github.com/ваш_аккаунт/ml" class="btn" target="_blank">GitHub</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Unity / игры</h3>
+                <p>Ритм-игра под скорость набора текста с редактором карт. 3 выпущенных проекта в Google Play (суммарно ~200$).</p>
+                <div class="card-buttons">
+                    <button class="btn screenshot-btn" data-img="img/rhythm_game.jpg">Скриншот</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================== ТВОРЧЕСТВО =================== -->
+    <div class="section">
+        <div class="section-title">творчество</div>
+        <div class="grid">
+            <!-- Литература -->
+            <div class="card">
+                <h3>Литература</h3>
+                <p>Автор художественной прозы, рассказов. Работа над психологической драмой и крупными сюжетными формами.</p>
+                <div class="card-buttons">
+                    <button class="btn screenshot-btn" data-img="img/literature_sample.jpg">Пример текста</button>
+                </div>
+            </div>
+            <!-- Рисование -->
+            <div class="card">
+                <h3>Рисование</h3>
+                <p>Дигитал (Gaomon PD2200), традиционная графика. Корейский курс Character Art 2D. Манга, анимация, анонимный паблик.</p>
+                <div class="card-buttons">
+                    <button class="btn screenshot-btn" data-img="img/art_gallery.jpg">Галерея</button>
+                </div>
+            </div>
+            <!-- Музыка / видео -->
+            <div class="card">
+                <h3>Аудио / видео</h3>
+                <p>Гитара (аккорды, теория), FL Studio. Adobe Premiere, After Effects, Photoshop. Создание монтажа, анимации, превью.</p>
+                <div class="card-buttons">
+                    <button class="btn screenshot-btn" data-img="img/montage_sample.jpg">Пример монтажа</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================== ИГРОВОЙ ОПЫТ =================== -->
+    <div class="section">
+        <div class="section-title">игры / соревновательный опыт</div>
+        <div class="grid">
+            <div class="card">
+                <h3>Sea of Thieves</h3>
+                <p>6000HG Ally, бустинг Hourglass, коучинг. Глубокое знание механик и меты.</p>
+                <div class="card-buttons">
+                    <button class="btn screenshot-btn" data-img="img/sot_ally.jpg">Скриншот</button>
+                </div>
+            </div>
+            <div class="card">
+                <h3>CS / Dota 2 / другие</h3>
+                <p>Global Elite, 5500 MMR. Опыт администрирования серверов (Minecraft, SAMP), участие в лидербордах.</p>
+                <div class="card-buttons">
+                    <button class="btn screenshot-btn" data-img="img/cs_dota_stats.jpg">Скриншот</button>
+                </div>
+            </div>
+            <div class="card">
+                <h3>FunPay</h3>
+                <p>8 лет на платформе, 300+ отзывов по крупным заказам (бустинг, услуги).</p>
+                <div class="card-buttons">
+                    <a href="https://funpay.ru/users/ваш_id" class="btn" target="_blank">Профиль</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================== ПСИХОЛОГИЯ / ЯЗЫКИ =================== -->
+    <div class="section">
+        <div class="section-title">психология & языки</div>
+        <div class="grid">
+            <div class="card">
+                <h3>Психология</h3>
+                <p>Знакомство с МКБ‑10, техниками консультирования, метарефлексия. Понимание механизмов влияния и групповой динамики.</p>
+            </div>
+            <div class="card">
+                <h3>Языки</h3>
+                <p>Английский — свободное владение (B2+, ежедневная среда). Японский — системное изучение, уровень N4–N3 (кандзи, грамматика, аудирование).</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================== УСЛУГИ =================== -->
+    <div class="section">
+        <div class="section-title">услуги</div>
+        <div class="grid">
+            <div class="card">
+                <h3>Коучинг / наставничество</h3>
+                <p>Sea of Thieves (6000HG Ally), общий игровой анализ, разбор реплеев. Индивидуальные занятия.</p>
+                <p style="margin-top: 0.5rem;"><strong>от 2500₽ / час</strong></p>
+            </div>
+            <div class="card">
+                <h3>Разработка (фриланс)</h3>
+                <p>Unity (C#), C++ (алгоритмы, оптимизация), прототипы игр, шейдеры. Работа под ключ или доработка.</p>
+            </div>
+            <div class="card">
+                <h3>Иллюстрации / коммишены</h3>
+                <p>Дигитал-арт, дизайн персонажей, манга. Примеры по запросу.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================== КОНТАКТЫ =================== -->
+    <div class="section">
+        <div class="section-title">контакты</div>
+        <div class="contact-links">
+            <a href="https://t.me/ваш_телеграм" class="contact-link" target="_blank">Telegram</a>
+            <a href="https://funpay.ru/users/ваш_id" class="contact-link" target="_blank">FunPay (300+ отзывов)</a>
+            <a href="https://github.com/ваш_аккаунт" class="contact-link" target="_blank">GitHub</a>
+            <a href="mailto:ваша_почта@example.com" class="contact-link">Email</a>
+        </div>
+        <p style="text-align: center; margin-top: 1rem;">пишите по любым вопросам — отвечаю быстро</p>
+    </div>
+
+    <footer>© 2026 · самостоятельный проект</footer>
+</div>
+
+<!-- Модальное окно для скриншотов -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <div class="close-modal">&times;</div>
+        <img id="modal-img" src="" alt="Screenshot">
+    </div>
+</div>
+
+<script>
+    // Модальное окно
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modal-img');
+    const closeModalBtn = document.querySelector('.close-modal');
+
+    function openModal(imgSrc) {
+        modalImg.src = imgSrc;
+        modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+        modal.style.display = 'none';
+        modalImg.src = '';
+    }
+
+    // Все кнопки с классом screenshot-btn
+    const screenshotBtns = document.querySelectorAll('.screenshot-btn');
+    screenshotBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const imgPath = btn.getAttribute('data-img');
+            if (imgPath) {
+                openModal(imgPath);
+            } else {
+                alert('Скриншот пока не добавлен');
+            }
+        });
+    });
+
+    // Закрытие по клику на фон или крестик
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    closeModalBtn.addEventListener('click', closeModal);
+</script>
+</body>
+</html>
