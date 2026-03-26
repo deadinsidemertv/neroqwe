@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>neroqwe · портфолио</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>neroqwe · портфолио | разработка, творчество, коучинг</title>
     <style>
         * {
             margin: 0;
@@ -13,14 +13,14 @@
 
         body {
             background: #0a0a0e;
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', 'Roboto', sans-serif;
             color: #e5e5f0;
             line-height: 1.5;
             padding: 2rem 1rem;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -34,13 +34,17 @@
             font-size: 2.8rem;
             font-weight: 600;
             letter-spacing: -0.02em;
-            color: #f0f0ff;
+            background: linear-gradient(135deg, #f0f0ff 0%, #b2aeff 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
         }
 
         .sub {
             color: #8a8aa8;
             margin-top: 0.5rem;
             font-size: 1rem;
+            font-weight: 450;
         }
 
         .section {
@@ -64,15 +68,22 @@
 
         .card {
             background: #12121a;
-            border-radius: 1rem;
-            padding: 1.2rem 1.5rem;
+            border-radius: 1.25rem;
+            padding: 1.4rem 1.5rem;
             border: 1px solid #252530;
-            transition: 0.2s;
+            transition: 0.2s ease-in-out;
+            backdrop-filter: blur(2px);
+        }
+
+        .card:hover {
+            border-color: #6c63ff80;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5);
         }
 
         .card h3 {
             font-size: 1.3rem;
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 0.5rem;
             color: #dbd9ff;
         }
@@ -81,18 +92,20 @@
             color: #b9b9d0;
             font-size: 0.9rem;
             margin: 0.5rem 0;
+            line-height: 1.45;
         }
 
         .card-buttons {
             display: flex;
-            gap: 0.8rem;
-            margin-top: 1rem;
             flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 1rem;
+            align-items: center;
         }
 
         .btn {
             background: #2a2a38;
-            padding: 0.4rem 1rem;
+            padding: 0.45rem 1.1rem;
             border-radius: 2rem;
             text-decoration: none;
             font-size: 0.8rem;
@@ -101,27 +114,21 @@
             border: none;
             cursor: pointer;
             font-family: inherit;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn i {
+            font-style: normal;
+            font-weight: 600;
         }
 
         .btn:hover {
             background: #6c63ff;
             color: #0a0a0e;
-        }
-
-        .badge-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 0.8rem 0 0.5rem;
-        }
-
-        .badge {
-            background: #20202a;
-            padding: 0.2rem 0.8rem;
-            border-radius: 2rem;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: #cbcbff;
+            transform: scale(0.97);
         }
 
         .contact-links {
@@ -129,17 +136,19 @@
             flex-wrap: wrap;
             gap: 0.8rem;
             margin-top: 1rem;
+            justify-content: center;
         }
 
         .contact-link {
             background: #1a1a24;
-            padding: 0.5rem 1.2rem;
+            padding: 0.6rem 1.4rem;
             border-radius: 2rem;
             text-decoration: none;
             color: #e0dcff;
             font-weight: 500;
             border: 1px solid #333344;
             font-size: 0.9rem;
+            transition: 0.2s;
         }
 
         .contact-link:hover {
@@ -153,9 +162,11 @@
             font-size: 0.75rem;
             color: #6a6a82;
             margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #20202a;
         }
 
-        /* модальное окно */
+        /* общие модальные окна */
         .modal {
             display: none;
             position: fixed;
@@ -163,42 +174,282 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0, 0, 0, 0.9);
             z-index: 1000;
             justify-content: center;
             align-items: center;
             cursor: pointer;
+            backdrop-filter: blur(5px);
         }
 
         .modal-content {
             max-width: 90%;
             max-height: 90%;
-            background: #1a1a24;
-            border-radius: 1rem;
-            padding: 1rem;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            background: #1e1e2a;
+            border-radius: 1.2rem;
+            padding: 0.8rem;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.6);
             cursor: default;
+            border: 1px solid #6c63ff40;
         }
 
         .modal-content img {
             max-width: 100%;
             max-height: 80vh;
-            border-radius: 0.5rem;
+            border-radius: 0.75rem;
             display: block;
+            object-fit: contain;
+        }
+
+        /* модальное окно для текста главы */
+        .book-modal-content {
+            max-width: 700px;
+            width: 90%;
+            background: #12121a;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid #6c63ff;
+            cursor: default;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* галерея: расширенный контент */
+        .gallery-modal-content {
+            max-width: 1000px;
+            width: 90%;
+            background: #12121a;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid #6c63ff;
+            cursor: default;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #2a2a33;
+            padding-bottom: 0.75rem;
+        }
+
+        .book-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #f0f0ff, #b2aeff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .close-book, .close-gallery {
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #aaa;
+            transition: 0.2s;
+            line-height: 1;
+        }
+
+        .close-book:hover, .close-gallery:hover {
+            color: #ff8c8c;
+        }
+
+        .chapter-text {
+            overflow-y: auto;
+            padding-right: 0.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #ddd9ff;
+            text-align: justify;
+        }
+
+        .chapter-text p {
+            margin-bottom: 1rem;
+        }
+
+        /* галерея — сетка для PNG */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1rem;
+            overflow-y: auto;
+            max-height: calc(85vh - 130px);
+            padding-right: 0.5rem;
+        }
+
+        .gallery-grid::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .gallery-grid::-webkit-scrollbar-track {
+            background: #20202a;
+            border-radius: 8px;
+        }
+
+        .gallery-grid::-webkit-scrollbar-thumb {
+            background: #6c63ff;
+            border-radius: 8px;
+        }
+
+        .art-card {
+            background: #1a1a26;
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid #2f2f3e;
+            transition: 0.2s;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+        }
+
+        .art-card:hover {
+            transform: translateY(-4px);
+            border-color: #6c63ff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            z-index: 2;
+        }
+
+        .art-img {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0b0b12;
+            overflow: hidden;
+        }
+
+        .art-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.2s;
+        }
+
+        .art-card:hover .art-img img {
+            transform: scale(1.02);
+        }
+
+        .art-title {
+            padding: 0.7rem 0.8rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #cacaff;
+            text-align: center;
+            background: #0f0f18;
+            border-top: 1px solid #2a2a36;
+        }
+
+        .age-warning {
+            background: #1f1a2e;
+            border: 2px solid #ff4d4d;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .age-warning p {
+            color: #ffb3b3;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .confirm-age-btn {
+            background: #ff4d4d;
+            color: #0a0a0e;
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .confirm-age-btn:hover {
+            background: #ff6666;
+            transform: scale(0.98);
         }
 
         .close-modal {
             text-align: right;
-            font-size: 1.5rem;
+            font-size: 1.7rem;
             cursor: pointer;
             color: #ccc;
             margin-bottom: 0.5rem;
+            line-height: 1;
+            transition: 0.2s;
+        }
+
+        .close-modal:hover {
+            color: #ff8c8c;
+        }
+
+        /* модальное окно для увеличенного просмотра арта (PNG) */
+        .art-zoom-modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            background: #12121a;
+            border-radius: 1.5rem;
+            padding: 1rem;
+            border: 1px solid #6c63ff;
+            cursor: default;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .zoom-img-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .zoom-img-container img {
+            max-width: 100%;
+            max-height: 80vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 0.5rem;
         }
 
         @media (max-width: 700px) {
-            .name { font-size: 2rem; }
-            .section-title { font-size: 1.3rem; }
-            .grid { grid-template-columns: 1fr; }
+            .name {
+                font-size: 2rem;
+            }
+            .section-title {
+                font-size: 1.3rem;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .card-buttons {
+                gap: 0.6rem;
+            }
+            .btn {
+                padding: 0.4rem 0.9rem;
+                font-size: 0.75rem;
+            }
+            .gallery-modal-content {
+                padding: 1rem;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            .art-img {
+                height: 140px;
+            }
         }
     </style>
 </head>
@@ -206,10 +457,10 @@
 <div class="container">
     <div class="header">
         <div class="name">neroqwe</div>
-        <div class="sub">программирование · творчество · competitive gaming</div>
+        <div class="sub">программирование · творчество · competitive gaming · коучинг</div>
     </div>
 
-    <!-- =================== ПРОГРАММИРОВАНИЕ =================== -->
+    <!-- РАЗРАБОТКА -->
     <div class="section">
         <div class="section-title">разработка</div>
         <div class="grid">
@@ -217,86 +468,110 @@
                 <h3>GPU‑тензоры (C++ / DirectX 11)</h3>
                 <p>Библиотека тензорных выражений без CUDA, шейдеры для матричных операций, ReLU. Полный цикл управления памятью.</p>
                 <div class="card-buttons">
-                    <a href="https://github.com/deadinsidemertv/GPUTensor" class="btn" target="_blank">GitHub</a>
+                    <a href="https://github.com/deadinsidemertv/GPUTensor" class="btn" target="_blank">📘 GitHub</a>
                 </div>
             </div>
             <div class="card">
-                <h3>Deep Q-Learning AI Agent for Coockie Clicker</h3>
-                <p>Deep Q Learning + target network для Cookie Clicker с тепловой картой.</p>
+                <h3>Deep Q-Learning AI Agent for Cookie Clicker</h3>
+                <p>Deep Q Learning + target network для Cookie Clicker с тепловой картой. Обучение агента.</p>
                 <div class="card-buttons">
-                    <a href="https://github.com/deadinsidemertv/CookieClickerAI" class="btn" target="_blank">GitHub</a>
-                </div>
-            </div>
-            <div class="card">
-                <h3>Unity / игры</h3>
-                <p>Ритм-игра под скорость набора текста с редактором карт. 3 выпущенных проекта в Google Play (суммарно ~200$).</p>
-                <div class="card-buttons">
-                    <button class="btn screenshot-btn" data-img="img/rhythm_game.jpg">Скриншот</button>
+                    <a href="https://github.com/deadinsidemertv/CookieClickerAI" class="btn" target="_blank">📘 GitHub</a>
+                    <a href="https://www.youtube.com/watch?v=XzQxl8Rod3M" class="btn" target="_blank">🎬 YouTube</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- =================== ТВОРЧЕСТВО =================== -->
+    <div class="section">
+        <div class="section-title">релизы / утерянный код</div>
+        <div class="grid">
+            <div class="card">
+                <h3>Tappiru Rhythm Game</h3>
+                <p>Ритм-игра на скорость набора текста с собственным редактором карт. Реализована на Unity, поддерживает пользовательские уровни.</p>
+                <div class="card-buttons">
+                    <a href="https://www.youtube.com/watch?v=Kcyx9ZbkVCM" class="btn" target="_blank">🎬 YouTube</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Куб кликер | Гача</h3>
+                <p>Кликер с элементами гачи: сбор кубов, улучшения, случайные выпадения редкостей. Исходный код утерян, сохранён только билд.</p>
+                <div class="card-buttons">
+                    <a href="https://www.youtube.com/watch?v=Ed1weeh0cNk" class="btn" target="_blank">🎬 YouTube</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Старые удалённые проекты (Google Play)</h3>
+                <p>Три выпущенных приложения, которые были удалены из магазина. Общий доход от Google Ads — <strong>~200$</strong>.</p>
+                <div class="card-buttons">
+                     <button class="btn screenshot-btn" data-img="gp_apps.png">📸 Скриншот</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ТВОРЧЕСТВО -->
     <div class="section">
         <div class="section-title">творчество</div>
         <div class="grid">
-            <!-- Литература -->
             <div class="card">
                 <h3>Литература</h3>
-                <p>Автор художественной прозы, рассказов. Работа над психологической драмой и крупными сюжетными формами.</p>
+                <p>Автор лайт-новеллы. Работа над психологической драмой и крупными сюжетными формами.</p>
                 <div class="card-buttons">
-                    <button class="btn screenshot-btn" data-img="img/literature_sample.jpg">Пример текста</button>
+                    <button class="btn" id="openBookBtn">📖 Пример текста</button>
                 </div>
             </div>
-            <!-- Рисование -->
             <div class="card">
                 <h3>Рисование</h3>
-                <p>Дигитал (Gaomon PD2200), традиционная графика. Корейский курс Character Art 2D. Манга, анимация, анонимный паблик.</p>
+                <p>Art 2D. Манга, коммишны.</p>
                 <div class="card-buttons">
-                    <button class="btn screenshot-btn" data-img="img/art_gallery.jpg">Галерея</button>
+                    <button class="btn" id="openGalleryBtn">🎨 Галерея</button>
                 </div>
             </div>
-            <!-- Музыка / видео -->
             <div class="card">
-                <h3>Аудио / видео</h3>
-                <p>Гитара (аккорды, теория), FL Studio. Adobe Premiere, After Effects, Photoshop. Создание монтажа, анимации, превью.</p>
+                <h3>Видео монтаж</h3>
+                <p>FL Studio, Adobe Premiere, After Effects, Photoshop.</p>
                 <div class="card-buttons">
-                    <button class="btn screenshot-btn" data-img="img/montage_sample.jpg">Пример монтажа</button>
+                    <a href="https://www.youtube.com/watch?v=BDozRaykLZM" class="btn" target="_blank">✂️ Пример 1</a>
+                    <a href="https://www.youtube.com/watch?v=dwf3hpusdEg&t=38s" class="btn" target="_blank">✂️ Пример 2</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- =================== ИГРОВОЙ ОПЫТ =================== -->
+    <!-- ИГРЫ -->
     <div class="section">
         <div class="section-title">игры / соревновательный опыт</div>
         <div class="grid">
             <div class="card">
                 <h3>Sea of Thieves</h3>
-                <p>6000HG Ally, бустинг Hourglass, коучинг. Глубокое знание механик и меты.</p>
+                <p>6000+ HG Ally, бустинг Hourglass, коучинг. Топ-игрок, аналитика. Снизу только из скрины что нашел с заказов</p>
                 <div class="card-buttons">
-                    <button class="btn screenshot-btn" data-img="img/sot_ally.jpg">Скриншот</button>
+                    <button class="btn screenshot-btn" data-img="sot0.jpg">⚓ Пруф с заказа 1</button>
+                    <button class="btn screenshot-btn" data-img="sot1.jpg">⚓ Пруф с заказа 2</button>
+                    <button class="btn screenshot-btn" data-img="sot1.png">⚓ Пруф с заказа 3</button>
                 </div>
             </div>
             <div class="card">
                 <h3>CS / Dota 2 / другие</h3>
-                <p>Global Elite, 5500 MMR. Опыт администрирования серверов (Minecraft, SAMP), участие в лидербордах.</p>
+                <p>LE в CS:GO, 5500 MMR. Администрирование серверов (Minecraft, SAMP), лидерский опыт.</p>
                 <div class="card-buttons">
-                    <button class="btn screenshot-btn" data-img="img/cs_dota_stats.jpg">Скриншот</button>
+                    <button class="btn screenshot-btn" data-img="dt0.jpg">🏆 Dota 2</button>
+                    <button class="btn screenshot-btn" data-img="dt1.jpg">📊 Dota 2</button>
+                    <a href="https://ru.dotabuff.com/players/893545232" class="btn" target="_blank">📈 Dotabuff </a>
+                    <button class="btn screenshot-btn" data-img="cs0.jpg">🔫 CS </button>
                 </div>
             </div>
             <div class="card">
                 <h3>FunPay</h3>
-                <p>8 лет на платформе, 300+ отзывов по крупным заказам (бустинг, услуги).</p>
+                <p>6 лет на платформе, 120+ отзывов по крупным заказам (бустинг, услуги).</p>
                 <div class="card-buttons">
-                    <a href="https://funpay.ru/users/ваш_id" class="btn" target="_blank">Профиль</a>
+                    <a href="https://funpay.com/users/2406948/" class="btn" target="_blank">⭐ Профиль</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- =================== ПСИХОЛОГИЯ / ЯЗЫКИ =================== -->
+    <!-- ПСИХОЛОГИЯ & ЯЗЫКИ -->
     <div class="section">
         <div class="section-title">психология & языки</div>
         <div class="grid">
@@ -306,88 +581,344 @@
             </div>
             <div class="card">
                 <h3>Языки</h3>
-                <p>Английский — свободное владение (B2+, ежедневная среда). Японский — системное изучение, уровень N4–N3 (кандзи, грамматика, аудирование).</p>
+                <p>Английский — свободное владение (B1+, ежедневная среда). Японский — системное изучение, уровень N4–N3 (кандзи, грамматика, аудирование).</p>
+                <a href="https://shikimori.io/sk%D1%83lin%D0%B5+ryodan" class="btn" target="_blank">📈 Шикимори </a>
             </div>
         </div>
     </div>
 
-    <!-- =================== УСЛУГИ =================== -->
+    <!-- УСЛУГИ -->
     <div class="section">
         <div class="section-title">услуги</div>
         <div class="grid">
             <div class="card">
                 <h3>Коучинг / наставничество</h3>
-                <p>Sea of Thieves (6000HG Ally), общий игровой анализ, разбор реплеев. Индивидуальные занятия.</p>
-                <p style="margin-top: 0.5rem;"><strong>от 2500₽ / час</strong></p>
+                <p>Sea of Thieves (6000+ HG Ally), общий игровой анализ, разбор реплеев. Индивидуальные занятия.</p>
+                <p><strong>от 2500₽ / час</strong></p>
             </div>
             <div class="card">
                 <h3>Разработка (фриланс)</h3>
-                <p>Unity (C#), C++ (алгоритмы, оптимизация), прототипы игр, шейдеры. Работа под ключ или доработка.</p>
+                <p>Unity (C#), C++ (алгоритмы, оптимизация), прототипы игр. Работа или доработка.</p>
             </div>
             <div class="card">
                 <h3>Иллюстрации / коммишены</h3>
-                <p>Дигитал-арт, дизайн персонажей, манга. Примеры по запросу.</p>
+                <p>Дигитал-арт, дизайн персонажей.</p>
             </div>
         </div>
     </div>
 
-    <!-- =================== КОНТАКТЫ =================== -->
+    <!-- КОНТАКТЫ -->
     <div class="section">
         <div class="section-title">контакты</div>
         <div class="contact-links">
-            <a href="https://t.me/ваш_телеграм" class="contact-link" target="_blank">Telegram</a>
-            <a href="https://funpay.ru/users/ваш_id" class="contact-link" target="_blank">FunPay (300+ отзывов)</a>
-            <a href="https://github.com/ваш_аккаунт" class="contact-link" target="_blank">GitHub</a>
-            <a href="mailto:ваша_почта@example.com" class="contact-link">Email</a>
+            <a href="https://t.me/nrqw02" class="contact-link" target="_blank">📱 Telegram</a>
+            <a href="https://funpay.com/users/2406948/" class="contact-link" target="_blank">💎 FunPay</a>
+            <a href="https://github.com/deadinsidemertv" class="contact-link" target="_blank">🐙 GitHub</a>
+            <a deadinsidemertv@mail.ru" class="contact-link">✉️ Email deadinsidemertv@mail.ru</a>
         </div>
-        <p style="text-align: center; margin-top: 1rem;">пишите по любым вопросам — отвечаю быстро</p>
+        <p style="text-align: center; margin-top: 1.2rem; color:#aaa;">пишите по любым вопросам — отвечаю быстро</p>
     </div>
 
-    <footer>© 2026 · самостоятельный проект</footer>
+    <footer>© 2026 · neroqwe — портфолио разработчика, художника и коуча</footer>
 </div>
 
-<!-- Модальное окно для скриншотов -->
-<div id="modal" class="modal">
+<!-- Модальное окно для одиночных скриншотов -->
+<div id="imageModal" class="modal">
     <div class="modal-content">
-        <div class="close-modal">&times;</div>
-        <img id="modal-img" src="" alt="Screenshot">
+        <div class="close-modal" id="closeImageModal">&times;</div>
+        <img id="modalImage" src="" alt="Screenshot preview">
+    </div>
+</div>
+
+<!-- Модальное окно для главы книги -->
+<div id="bookModal" class="modal">
+    <div class="book-modal-content">
+        <div class="book-header">
+            <h2>📖 Пример текста</h2>
+            <div class="close-book" id="closeBookModal">&times;</div>
+        </div>
+        <div id="warningBlock" class="age-warning">
+            <p>⚠️ <strong>Внимание!</strong> Текст содержит сцены насилия, жестокости и материалы 18+.</p>
+            <p>Подтвердите, что вам есть 18 лет.</p>
+            <button class="confirm-age-btn" id="confirmAgeBtn">Подтвердить 18+ и прочитать</button>
+        </div>
+        <div id="chapterText" class="chapter-text" style="display: none;">
+            <p>Я поставил поднос перед Курой, нужно постараться, что бы всё сработало.</p>
+            <p>— Соби-чан я кое-что принёс для тебя – Моё лицо моментально изменилось, и посмотрев ей в глаза я мягко улыбнулся ей.<br>
+            — Э-это мне?! Ты убьёшь меня? Это последний ужин?! – Эмоция на личике перескакивала от страха к желанию.<br>
+            — Что? Конечно же нет, я не собираюсь тебя убивать глупышка. – Курой незаметно выдохнула с облегчением.<br>
+            — Тогда это мне? Я могу поесть? Что ты хочешь… за это? – Теперь её волнует лишь поднос с вкуснейшим Гюдоном <br>
+            — Мм..? Абсолютно ничего, эта еда твоя и ты можешь съесть это всё. <br>
+            — Тогда… - Курой уже потянулась своими крошечными ручками к миске с Гюдоном, но я достаточно сильным щелбаном в лоб отстранил её от чего она упала обратно на попу. – Ай!<br>
+            — Подожди, где твои манеры, сначала я хочу рассказать тебе про это блюдо. – Начал пафосно умничать я перед Курой, сидящей на попе небольшим следом от щелбона на лбу.<br>
+            — Рассказать? Я в подвале с психом извращенцем, а не в ресторане. – потирая лоб и немного прищурившись сказала Курой.<br>
+            — Это неважно. Над этим блюдом старались, а значит ты должна уважать эти труды, и зови меня по имени я думал мы это уже проходили.<br>
+            — …Ладно. Юки, расскажи про этот Гюдон. – Курой разозлилась? Нет подождите… Как маленький ребенок которому что-то запретили… Даже щечки надула! Вот это да… <br>
+            — Умница, и так хочу тебе представить белый как твои прекрасные мягкие волосы рис – Курой немного шокировано посмотрела на меня, и смущаясь начала сглатывать очередную порцию слюны. – Покрытый гарниром из нежной таящей во рту тушенной в собственном бульоне карамелизированной говядины с жареным в ароматном сливочном масле луком. – От столь детального описания, Курой не заметила как часть слюны начала вытекать из полуоткрытого рта вниз к подбородку, её взгляд прикован к блюду. – И стакан холодной чистейшей водички что бы увлажнить твоё горло.<br>
+            — Т-теперь можно Юки? – Она с надеждой посмотрела на меня.<br>
+            — Конечно можно, но Соби я не могу тебе позволить кушать не готовое блюдо. <br>
+            — В каком смысле не готово? Оно идеально, я же вижу-у-у-у-…. – она расплылась в жалком виде перед порцией обычного Гюдона…<br>
+            — Видишь, ли это мой авторский рецепт, который я готовил самостоятельно прикладывая очень много усилий… Специально для тебя, и я хочу что бы частичка меня вместе с блюдом осталась и в тебе.<br>
+            — Мне спасибо сказать?... – Она посмотрела на пластырь у меня на пальце – ты порезался когда резал мясо или лук?<br>
+            — А это… не обращай внимание, сейчас самое главное это что бы ты хорошо поела, если за это мне приходится расплачиваться незначительными порезами при готовке, я готов стерпеть это. Тебе нужно набираться сил. Но к сожалению до полной готовности не хватает еще одного ингредиента. – Я отодвинул поднос ровно на столько чтобы она не смогла дотянуться до него.<br>
+            — К-какого? – Тело Курой качнулось в сторону подноса.<br>
+            Я выдержал паузу… сейчас… мне нужно собраться с мыслями… может прекратить это и просто дать ей поесть перед аукционом? Нет… На самом деле я действительно хочу, что она съела это… не только из-за плана… это моё желание.<br>
+            — Сперма.</p>
+            <p>(Перспектива Соби)</p>
+            <p>Что, он только что сказал? Его слова пронеслись по всему телу ударом молнии, я смотрела на его невозмутимое лицо, он сказал это так просто, как будто это действительно еще один ингредиент блюда…<br>
+            — Ты в своём уме?! Ни за что! Забери свою еду! Я знала что ты выкинешь что-то подобное, лучше сдохну от голода псих!<br>
+            — Разве ты не хочешь попробовать этот великолепный Гюдон? Сперма, звучит страшно, но не волнуйся ты её даже не почувствуешь, это будет твоя благодарность за еду. – Он взял миску с едой в руку нежно притронувшись к моей щеке поднёс её прямо мне под нос.<br>
+            Чё-ё-ё-ёрт… этот запах… слишком близко… Я зажмурила глаза и старалась не дышать, не хочу чувствовать этот запах я не хочу это делать, это слишком унизительно.<br>
+            Он открыл мой рот рукой отодвинув нижний ряд зубов. Глаза были закрыты, так что я не успела заметить как на язык упал небольшой кусочек горячей говядины. Такая нежная…. Блять! Как вкусно, не могу сдержать эти чувства. Я открыла глаза, наши с ним лица были на растоянии не больше двух сантиметров, настолько близко, что я могла рассмотреть его глаза вблизи… Что за грустный взгляд урод! Уйди от меня… <br>
+            За кусочком нежной говядины последовала его слюна, он сплюнул мне в рот немного своей… Я попыталась выплюнуть! Быстро… Какая мерзость! Но он схватил меня и силой закрыл рот.<br>
+            — Жуй! – Он приказал, как всегда сменяя маски заботы и жестокости.<br>
+            — Ммм!...мммм – Я мычала, но он не давал открыть мне рот.<br>
+            — Жуй сама иначе я заставлю тебя жевать! – Он перешел на крик, наши лица всё так же близки.<br>
+            Мне пришлось прожевать это… мясной сок, хрустящая карамельная корочка раскалывается зубами обнажая нежное мясо и соевый соус… оседающий на языке оставляя послевкусие умами. я испытала настоящий диссонанс… настолько вкусная еда и мерзость от его слюней… и принудительного кормления. Не могу сдержаться… Мне самой противно испытывать эти чувства, но это слишком вкусно, я не ела уже наверное неделю.<br>
+            Слёзы подступили к глазам увлажняя роговицу, я плакала и жевала вкуснейшее мясо в своей жизни… взгляд, то и дело прилипал к его пластырю… неужели он так старался приготовить это настолько вкусно для меня…что даже порезал палец. Так почему же ты хочешь что бы я ненавидела тебя еще больше? Почему не дашь просто поесть?! Ты же так старался, я и так тебя никогда не прощу! Для меня ты самый мерзкий психопат на свете, но о чем думаешь ты?! Зачем ты делаешь это? Тело напряглось, ноги свело, а сердце застучало, чувствую как в желудок попадает что-то кроме воды…<br>
+            — Соби! Слюна и сперма не имеют определённого запаха и вкуса. Ты сможешь выдержать это, я верю в тебя, это будет лучшая благодарность из всех за мои старания.<br>
+            — Нет! Нет! Заткнись! Я не хочу это слушать! Мне плевать что ты старался! Я тут из за тебя! Во всём виноват ты! Я не просила тебя готовить!!! – Я закрыла лицо руками и закричала, лишь бы заглушить любые его слова.<br>
+            Он приспустил штаны и достал член. Миску поставил рядом и обнял меня достаточно сильно что бы я не могла вырваться.<br>
+            — Убери это!!!!! Ааааааааа! Отпусти!!!!  – Я закричала, солёные слёзы струились по щекам.<br>
+            Он хочет изнасиловать меня?! Нет! Нет! Не хочу только не это! Папочка спаси меня!<br>
+            Я начала бить руками по спине, но мои слабые ручки никак не останавливали его.<br>
+            — Юки пожалуйста!!!! Нет!!!! Прошу!!! – Молилась я, и просила пощадить.<br>
+            — Я не буду тебя насиловать. – он прошептал мне это на ухо начиная дрочить.<br>
+            — Ты врёшь! Убери член! Спрячь его! – Я продолжала бить его по спине.</p>
+            <p>(Перспектива Юки)</p>
+            <p>Я держу её крепко, обнимаю и тактично пытаюсь кончить, её тело… в моей власти, она бьёт меня по спине просит пощадить… даже по имени попросила, но это не тот случай когда я могу просто похвалить её и прекратить, дурочка думает что я собрался её насиловать…<br>
+            Горячий член пульсировал в моей руке, пока я нюхал прижатое к себе тело Соби, чувствую как её крик вонзается в уши, но я не перестану. Её небольшие сисечки были плотно прижаты к моей груди, левой рукой я обнимал её тоненькую талию, а правой всё ускорялся, чувствуя как волна наслаждения подходит всё ближе, внути… всё сжимается…<br>
+            На секунду я притронулся к её киске… я слишком спешу… нельзя… <br>
+            — Пожалуйста Юки!!! Прости меня!!! Я поем только не насилуй меня! Не прикасайся там…!!!<br>
+            — Соби! Я не говорил тебе этого. Но ты мне нравишься, несмотря на то что сейчас ты грязная вонючая сука, ты самая красивая… и сексуальная девушка из всех что я встречал <br>
+            Оргазм подступал, мышцы сжимались всё сильнее готовые расслабиться и дать заряд горячего семени в любую секунду, но я сдерживался, сознание сузилось. – Ты правда хочешь поесть этот вкуснейший Гюдон со спермой? <br>
+            — Да!!! Юки пожалуйста я съем всё дай мне спермы!!! <br>
+            Это переломный момент… я постарался хоть на секунду взять себя в руки и отстранился, Соби сидела с опущенными руками вся в слезах как будто уже потеряла надежду…<br>
+            — Соби! Помоги мне кончить! У меня не выходит! – Естественно я соврал… я был на пределе. Я немного крикнул на неё <br>
+            — Как? Я ничего в этом не понимаю…<br>
+            — Тебе придётся придумать иначе мне придётся использовать тебя… я не хочу Соби-чан, ты же так просила меня… <br>
+            Она не придумала ничего лучше как сесть на попу и раздвинуть свои худые ножки. Но даже этого мне было достаточно что бы потерять контроль, я вижу… её щелочка, розовая линия, то что она сейчас защищает ценой своей гордости… Я не могу больше сдерживаться… Еще мгновение….<br>
+            — Подставляй миску с Гюдоном Соби! Не дай ни одной капле пролиться…. – я зажмурил глаза, чувствую как сперма подступает.<br>
+            Я кончил… горячие выделения выплескивались вместе с пульсацией головки моего члена, невероятное удовольствие… Я открыл глаза…. Картина что я увидел была невероятно жестокой и одновременно возбуждающей…<br>
+            Курой стояла на коленях держа миску с Гюдоном около головки моего члена, всё глаза красные от слёз, но прикованные к еде… <br>
+            Блюдо из риса и говядины теперь сверху было покрыто плёнкой из выделений… Курой просто держала миску, не решавшись сделать следующий шаг, я понимаю Курой… я помогу, даже для меня это был тяжелый день.<br>
+            Я убрал член, и приблизился к Курой, а затем с нежностью обнял её. Миска с блюдом по прежнему находилась в левой руке Соби.<br>
+            — Ты молодец… Хорошая девочка. Ты справилась, не пролила не капли. – Я нежно обнимал её, и гладил по грязным волосам.<br>
+            Она молчала. <br>
+            — Я помогу тебе Соби. – Я забрал у неё миску, и наши руки едва соприкоснулись. – палочками я размешал содержимое , и передал еду Курой.<br>
+            — …Я… - Она опять расплакалась глядя на испорченный гюдон.<br>
+            — Кушай Соби-чан, это всё для тебя. – Я сел рядом с ней и положил голову ей на плечо, цепь на её шее звенела, от каждого прикосновения. В мозгу появилась мысль “Не хочу отдавать её…”.<br>
+            Я чувствую как её трясёт, но она сдалась… сама попросила моей спермы… Она знает, что ей придётся это сделать.<br>
+            Курой взялась за палочки, и взяв небольшой кусочек мяса с рисом положила к себе в рот, глаза с силой закрылись, а лицо скорчилось в омерзительной гримасе. Рукой она прикрыла рот, через силу прожёвывая пищу.<br>
+            — Невкусно? Значит всё таки зря старался… - я потянулся к миске с гюдоном. <br>
+            — …Вкусно - Она медленно отвернулась всем телом защищая миску...ы</p>
+            <p style="margin-top: 1rem; font-style: italic; color: #aa9eff;">— Отрывок из лайт-новеллы. Полная версия доступна по запросу.</p>
+        </div>
+    </div>
+</div>
+
+<!-- ГАЛЕРЕЯ С 18+ ПРЕДУПРЕЖДЕНИЕМ И УВЕЛИЧЕННЫМ ПРОСМОТРОМ (PNG) -->
+<div id="galleryModal" class="modal">
+    <div class="gallery-modal-content">
+        <div class="book-header">
+            <h2>🎨 Художественная галерея</h2>
+            <div class="close-gallery" id="closeGalleryBtn">&times;</div>
+        </div>
+        <div id="galleryWarningBlock" class="age-warning">
+            <p>⚠️ <strong>Внимание!</strong> Галерея содержит арт 18+ тематики (обнажённая натура, мрачная эстетика).</p>
+            <p>Нажимая кнопку, вы подтверждаете возраст 18+.</p>
+            <button class="confirm-age-btn" id="confirmGalleryBtn">Подтвердить 18+ и открыть галерею</button>
+        </div>
+        <div id="galleryContainer" class="gallery-grid" style="display: none;"></div>
+    </div>
+</div>
+
+<!-- Модальное окно для увеличенного просмотра PNG -->
+<div id="artZoomModal" class="modal">
+    <div class="art-zoom-modal-content">
+        <div class="book-header" style="margin-bottom: 0.5rem;">
+            <h2 id="zoomTitle">Увеличенный арт</h2>
+            <div class="close-gallery" id="closeZoomModal">&times;</div>
+        </div>
+        <div id="zoomImgContainer" class="zoom-img-container"></div>
     </div>
 </div>
 
 <script>
-    // Модальное окно
-    const modal = document.getElementById('modal');
-    const modalImg = document.getElementById('modal-img');
-    const closeModalBtn = document.querySelector('.close-modal');
+    (function() {
+        // ---------- ОДИНОЧНЫЕ СКРИНШОТЫ ----------
+        const imageModal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeImageBtn = document.getElementById('closeImageModal');
 
-    function openModal(imgSrc) {
-        modalImg.src = imgSrc;
-        modal.style.display = 'flex';
-    }
+        function openImageModal(imgSrc) {
+            modalImg.src = imgSrc;
+            imageModal.style.display = 'flex';
+            modalImg.onerror = function() {
+                this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236c63ff"%3E%3Cpath d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/%3E%3C/svg%3E';
+                this.alt = 'Изображение недоступно';
+                this.style.opacity = '0.7';
+            };
+        }
+        function closeImageModalFunc() {
+            imageModal.style.display = 'none';
+            modalImg.src = '';
+        }
+        document.querySelectorAll('.screenshot-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const imgPath = btn.getAttribute('data-img');
+                if (imgPath) openImageModal(imgPath);
+                else alert('Скриншот временно отсутствует');
+            });
+        });
+        if (closeImageBtn) closeImageBtn.addEventListener('click', closeImageModalFunc);
+        imageModal.addEventListener('click', (e) => { if (e.target === imageModal) closeImageModalFunc(); });
 
-    function closeModal() {
-        modal.style.display = 'none';
-        modalImg.src = '';
-    }
+        // ---------- КНИЖНАЯ МОДАЛКА ----------
+        const bookModal = document.getElementById('bookModal');
+        const closeBookBtn = document.getElementById('closeBookModal');
+        const openBookBtn = document.getElementById('openBookBtn');
+        const warningBlock = document.getElementById('warningBlock');
+        const chapterTextDiv = document.getElementById('chapterText');
+        const confirmBtn = document.getElementById('confirmAgeBtn');
 
-    // Все кнопки с классом screenshot-btn
-    const screenshotBtns = document.querySelectorAll('.screenshot-btn');
-    screenshotBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const imgPath = btn.getAttribute('data-img');
-            if (imgPath) {
-                openModal(imgPath);
-            } else {
-                alert('Скриншот пока не добавлен');
+        function resetBookModal() {
+            if (warningBlock) warningBlock.style.display = 'block';
+            if (chapterTextDiv) chapterTextDiv.style.display = 'none';
+        }
+        function openBookModalFunc() {
+            resetBookModal();
+            bookModal.style.display = 'flex';
+        }
+        function closeBookModalFunc() {
+            bookModal.style.display = 'none';
+        }
+        if (openBookBtn) openBookBtn.addEventListener('click', (e) => { e.stopPropagation(); openBookModalFunc(); });
+        if (closeBookBtn) closeBookBtn.addEventListener('click', closeBookModalFunc);
+        bookModal.addEventListener('click', (e) => { if (e.target === bookModal) closeBookModalFunc(); });
+        if (confirmBtn) {
+            confirmBtn.addEventListener('click', () => {
+                if (warningBlock) warningBlock.style.display = 'none';
+                if (chapterTextDiv) chapterTextDiv.style.display = 'block';
+            });
+        }
+
+        // ---------- ГАЛЕРЕЯ PNG ----------
+        const galleryModal = document.getElementById('galleryModal');
+        const closeGalleryBtn = document.getElementById('closeGalleryBtn');
+        const openGalleryBtn = document.getElementById('openGalleryBtn');
+        const galleryWarningBlock = document.getElementById('galleryWarningBlock');
+        const galleryContainer = document.getElementById('galleryContainer');
+        const confirmGalleryBtn = document.getElementById('confirmGalleryBtn');
+        const artZoomModal = document.getElementById('artZoomModal');
+        const zoomImgContainer = document.getElementById('zoomImgContainer');
+        const closeZoomModal = document.getElementById('closeZoomModal');
+        const zoomTitle = document.getElementById('zoomTitle');
+
+        // Список PNG: 0.png ... 6.png
+        const pngFiles = [];
+        for (let i = 0; i <= 4; i++) {
+            pngFiles.push({
+                src: `gallery/${i}.png`,
+                title: `Работа #${i}`
+            });
+        }
+
+        function buildGallery() {
+            if (!galleryContainer) return;
+            galleryContainer.innerHTML = '';
+            pngFiles.forEach((art, idx) => {
+                const artCard = document.createElement('div');
+                artCard.className = 'art-card';
+                const imgDiv = document.createElement('div');
+                imgDiv.className = 'art-img';
+                const img = document.createElement('img');
+                img.src = art.src;
+                img.alt = art.title;
+                img.loading = 'lazy';
+                // Обработка ошибки загрузки
+                img.onerror = function() {
+                    this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236c63ff"%3E%3Cpath d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/%3E%3C/svg%3E';
+                    this.alt = 'Ошибка загрузки';
+                };
+                imgDiv.appendChild(img);
+                const titleSpan = document.createElement('div');
+                titleSpan.className = 'art-title';
+                titleSpan.innerText = art.title;
+                artCard.appendChild(imgDiv);
+                artCard.appendChild(titleSpan);
+                // клик для увеличения
+                artCard.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    zoomTitle.innerText = art.title;
+                    // Очищаем контейнер и показываем увеличенное изображение
+                    zoomImgContainer.innerHTML = '';
+                    const zoomImg = document.createElement('img');
+                    zoomImg.src = art.src;
+                    zoomImg.alt = art.title;
+                    zoomImg.onerror = function() {
+                        this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236c63ff"%3E%3Cpath d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/%3E%3C/svg%3E';
+                        this.alt = 'Ошибка загрузки';
+                    };
+                    zoomImgContainer.appendChild(zoomImg);
+                    artZoomModal.style.display = 'flex';
+                });
+                galleryContainer.appendChild(artCard);
+            });
+        }
+
+        function resetGalleryModal() {
+            if (galleryWarningBlock) galleryWarningBlock.style.display = 'block';
+            if (galleryContainer) galleryContainer.style.display = 'none';
+        }
+
+        function openGalleryModal() {
+            resetGalleryModal();
+            if (galleryContainer && galleryContainer.children.length === 0) {
+                buildGallery();
+            }
+            galleryModal.style.display = 'flex';
+        }
+
+        function closeGalleryModalFunc() {
+            galleryModal.style.display = 'none';
+            resetGalleryModal();
+        }
+
+        if (openGalleryBtn) {
+            openGalleryBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openGalleryModal();
+            });
+        }
+        if (closeGalleryBtn) closeGalleryBtn.addEventListener('click', closeGalleryModalFunc);
+        galleryModal.addEventListener('click', (e) => { if (e.target === galleryModal) closeGalleryModalFunc(); });
+        if (confirmGalleryBtn) {
+            confirmGalleryBtn.addEventListener('click', () => {
+                if (galleryWarningBlock) galleryWarningBlock.style.display = 'none';
+                if (galleryContainer) galleryContainer.style.display = 'grid';
+            });
+        }
+
+        // Закрытие увеличенного просмотра
+        function closeZoomModalFunc() {
+            artZoomModal.style.display = 'none';
+            zoomImgContainer.innerHTML = '';
+        }
+        if (closeZoomModal) closeZoomModal.addEventListener('click', closeZoomModalFunc);
+        artZoomModal.addEventListener('click', (e) => { if (e.target === artZoomModal) closeZoomModalFunc(); });
+
+        // ESCAPE для всех модалок
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (imageModal && imageModal.style.display === 'flex') closeImageModalFunc();
+                if (bookModal && bookModal.style.display === 'flex') closeBookModalFunc();
+                if (galleryModal && galleryModal.style.display === 'flex') closeGalleryModalFunc();
+                if (artZoomModal && artZoomModal.style.display === 'flex') closeZoomModalFunc();
             }
         });
-    });
-
-    // Закрытие по клику на фон или крестик
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    });
-    closeModalBtn.addEventListener('click', closeModal);
+    })();
 </script>
 </body>
 </html>
