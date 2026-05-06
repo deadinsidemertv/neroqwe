@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>neroqwe · портфолио | разработка, творчество, коучинг</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background: #0a0a0e;
@@ -19,10 +15,7 @@
             padding: 2rem 1rem;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        .container { max-width: 1200px; margin: 0 auto; }
 
         .header {
             margin-bottom: 3rem;
@@ -40,16 +33,9 @@
             color: transparent;
         }
 
-        .sub {
-            color: #8a8aa8;
-            margin-top: 0.5rem;
-            font-size: 1rem;
-            font-weight: 450;
-        }
+        .sub { color: #8a8aa8; margin-top: 0.5rem; font-size: 1rem; font-weight: 450; }
 
-        .section {
-            margin-bottom: 3rem;
-        }
+        .section { margin-bottom: 3rem; }
 
         .section-title {
             font-size: 1.6rem;
@@ -72,28 +58,16 @@
             padding: 1.4rem 1.5rem;
             border: 1px solid #252530;
             transition: 0.2s ease-in-out;
-            backdrop-filter: blur(2px);
         }
 
         .card:hover {
             border-color: #6c63ff80;
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.5);
         }
 
-        .card h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #dbd9ff;
-        }
-
-        .card p {
-            color: #b9b9d0;
-            font-size: 0.9rem;
-            margin: 0.5rem 0;
-            line-height: 1.45;
-        }
+        .card h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem; color: #dbd9ff; }
+        .card p { color: #b9b9d0; font-size: 0.9rem; margin: 0.5rem 0; line-height: 1.45; }
 
         .card-buttons {
             display: flex;
@@ -120,17 +94,157 @@
             gap: 6px;
         }
 
-        .btn i {
-            font-style: normal;
-            font-weight: 600;
+        .btn:hover { background: #6c63ff; color: #0a0a0e; transform: scale(0.97); }
+
+        /* ======= FEATURED BLOCK ======= */
+        .featured-project .section-title {
+            border-left-color: #a78bfa;
+            color: #e0d9ff;
+            font-size: 1.8rem;
         }
 
-        .btn:hover {
-            background: #6c63ff;
-            color: #0a0a0e;
+        .featured-card {
+            background: linear-gradient(135deg, #0f0f1a 0%, #141428 60%, #0a0a18 100%);
+            border: 1px solid #4c4aaa60;
+            border-radius: 1.75rem;
+            padding: 2rem 2.2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 60px -10px #6c63ff30, 0 20px 40px -15px rgba(0,0,0,0.7);
+        }
+
+        .featured-card::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, #6c63ff18 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .featured-header { margin-bottom: 1.8rem; }
+
+        .featured-title-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .featured-badge {
+            background: linear-gradient(135deg, #6c63ff, #a78bfa);
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            padding: 0.25rem 0.7rem;
+            border-radius: 2rem;
+            text-transform: uppercase;
+        }
+
+        .featured-name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, #c4b5fd 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .featured-sub {
+            color: #8a8ac8;
+            font-size: 0.95rem;
+        }
+
+        .featured-desc {
+            color: #c5c5e0;
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 780px;
+            margin-bottom: 1.2rem;
+        }
+
+        .featured-desc strong { color: #d4caff; }
+
+        .featured-langs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .lang-tag {
+            background: #1e1e30;
+            border: 1px solid #3a3a5a;
+            color: #a0a0cc;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.2rem 0.7rem;
+            border-radius: 1rem;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .feat-block {
+            background: #0d0d1c;
+            border: 1px solid #2a2a42;
+            border-radius: 1rem;
+            padding: 1rem 1.2rem;
+            display: flex;
+            gap: 0.9rem;
+            align-items: flex-start;
+            transition: 0.2s;
+        }
+
+        .feat-block:hover {
+            border-color: #6c63ff60;
+            background: #10102a;
+        }
+
+        .feat-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 0.1rem; }
+
+        .feat-text strong {
+            display: block;
+            color: #dbd9ff;
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .feat-text p {
+            color: #9494b8;
+            font-size: 0.82rem;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .featured-footer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .btn-featured {
+            background: linear-gradient(135deg, #6c63ff, #9b8cff);
+            color: #fff;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 2rem;
+        }
+
+        .btn-featured:hover {
+            background: linear-gradient(135deg, #8075ff, #b0a5ff);
+            color: #fff;
             transform: scale(0.97);
         }
 
+        /* ======= ОСТАЛЬНЫЕ СТИЛИ ======= */
         .contact-links {
             display: flex;
             flex-wrap: wrap;
@@ -151,11 +265,7 @@
             transition: 0.2s;
         }
 
-        .contact-link:hover {
-            background: #6c63ff;
-            border-color: #6c63ff;
-            color: #0a0a0e;
-        }
+        .contact-link:hover { background: #6c63ff; border-color: #6c63ff; color: #0a0a0e; }
 
         footer {
             text-align: center;
@@ -166,15 +276,12 @@
             border-top: 1px solid #20202a;
         }
 
-        /* общие модальные окна */
         .modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -183,12 +290,11 @@
         }
 
         .modal-content {
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 90%; max-height: 90%;
             background: #1e1e2a;
             border-radius: 1.2rem;
             padding: 0.8rem;
-            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.6);
             cursor: default;
             border: 1px solid #6c63ff40;
         }
@@ -201,10 +307,8 @@
             object-fit: contain;
         }
 
-        /* модальное окно для текста главы */
         .book-modal-content {
-            max-width: 700px;
-            width: 90%;
+            max-width: 700px; width: 90%;
             background: #12121a;
             border-radius: 1.5rem;
             padding: 1.5rem;
@@ -215,10 +319,8 @@
             flex-direction: column;
         }
 
-        /* галерея: расширенный контент */
         .gallery-modal-content {
-            max-width: 1000px;
-            width: 90%;
+            max-width: 1000px; width: 90%;
             background: #12121a;
             border-radius: 1.5rem;
             padding: 1.5rem;
@@ -239,25 +341,16 @@
         }
 
         .book-header h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 1.5rem; font-weight: 600;
             background: linear-gradient(135deg, #f0f0ff, #b2aeff);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
+            background-clip: text; -webkit-background-clip: text; color: transparent;
         }
 
         .close-book, .close-gallery {
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: #aaa;
-            transition: 0.2s;
-            line-height: 1;
+            font-size: 1.8rem; cursor: pointer; color: #aaa; transition: 0.2s; line-height: 1;
         }
 
-        .close-book:hover, .close-gallery:hover {
-            color: #ff8c8c;
-        }
+        .close-book:hover, .close-gallery:hover { color: #ff8c8c; }
 
         .chapter-text {
             overflow-y: auto;
@@ -268,11 +361,8 @@
             text-align: justify;
         }
 
-        .chapter-text p {
-            margin-bottom: 1rem;
-        }
+        .chapter-text p { margin-bottom: 1rem; }
 
-        /* галерея — сетка для PNG */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -283,19 +373,9 @@
             padding-right: 0.5rem;
         }
 
-        .gallery-grid::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .gallery-grid::-webkit-scrollbar-track {
-            background: #20202a;
-            border-radius: 8px;
-        }
-
-        .gallery-grid::-webkit-scrollbar-thumb {
-            background: #6c63ff;
-            border-radius: 8px;
-        }
+        .gallery-grid::-webkit-scrollbar { width: 6px; }
+        .gallery-grid::-webkit-scrollbar-track { background: #20202a; border-radius: 8px; }
+        .gallery-grid::-webkit-scrollbar-thumb { background: #6c63ff; border-radius: 8px; }
 
         .art-card {
             background: #1a1a26;
@@ -316,33 +396,18 @@
         }
 
         .art-img {
-            width: 100%;
-            height: 180px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #0b0b12;
-            overflow: hidden;
+            width: 100%; height: 180px;
+            display: flex; align-items: center; justify-content: center;
+            background: #0b0b12; overflow: hidden;
         }
 
-        .art-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.2s;
-        }
-
-        .art-card:hover .art-img img {
-            transform: scale(1.02);
-        }
+        .art-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.2s; }
+        .art-card:hover .art-img img { transform: scale(1.02); }
 
         .art-title {
             padding: 0.7rem 0.8rem;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #cacaff;
-            text-align: center;
+            font-size: 0.85rem; font-weight: 500;
+            color: #cacaff; text-align: center;
             background: #0f0f18;
             border-top: 1px solid #2a2a36;
         }
@@ -356,100 +421,57 @@
             margin: 1rem 0;
         }
 
-        .age-warning p {
-            color: #ffb3b3;
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
+        .age-warning p { color: #ffb3b3; margin-bottom: 1rem; font-size: 1rem; }
 
         .confirm-age-btn {
-            background: #ff4d4d;
-            color: #0a0a0e;
+            background: #ff4d4d; color: #0a0a0e;
             padding: 0.6rem 1.5rem;
-            border: none;
-            border-radius: 2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-            font-size: 0.9rem;
+            border: none; border-radius: 2rem;
+            font-weight: bold; cursor: pointer;
+            transition: 0.2s; font-size: 0.9rem;
         }
 
-        .confirm-age-btn:hover {
-            background: #ff6666;
-            transform: scale(0.98);
-        }
+        .confirm-age-btn:hover { background: #ff6666; transform: scale(0.98); }
 
         .close-modal {
-            text-align: right;
-            font-size: 1.7rem;
-            cursor: pointer;
-            color: #ccc;
-            margin-bottom: 0.5rem;
-            line-height: 1;
-            transition: 0.2s;
+            text-align: right; font-size: 1.7rem;
+            cursor: pointer; color: #ccc;
+            margin-bottom: 0.5rem; line-height: 1; transition: 0.2s;
         }
 
-        .close-modal:hover {
-            color: #ff8c8c;
-        }
+        .close-modal:hover { color: #ff8c8c; }
 
-        /* модальное окно для увеличенного просмотра арта (PNG) */
         .art-zoom-modal-content {
-            max-width: 90vw;
-            max-height: 90vh;
+            max-width: 90vw; max-height: 90vh;
             background: #12121a;
             border-radius: 1.5rem;
             padding: 1rem;
             border: 1px solid #6c63ff;
             cursor: default;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: flex; flex-direction: column; align-items: center;
         }
 
         .zoom-img-container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 100%; height: 100%;
+            display: flex; justify-content: center; align-items: center;
         }
 
         .zoom-img-container img {
-            max-width: 100%;
-            max-height: 80vh;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-            border-radius: 0.5rem;
+            max-width: 100%; max-height: 80vh;
+            width: auto; height: auto;
+            object-fit: contain; border-radius: 0.5rem;
         }
 
         @media (max-width: 700px) {
-            .name {
-                font-size: 2rem;
-            }
-            .section-title {
-                font-size: 1.3rem;
-            }
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            .card-buttons {
-                gap: 0.6rem;
-            }
-            .btn {
-                padding: 0.4rem 0.9rem;
-                font-size: 0.75rem;
-            }
-            .gallery-modal-content {
-                padding: 1rem;
-            }
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-            .art-img {
-                height: 140px;
-            }
+            .name { font-size: 2rem; }
+            .section-title { font-size: 1.3rem; }
+            .grid { grid-template-columns: 1fr; }
+            .featured-grid { grid-template-columns: 1fr; }
+            .featured-name { font-size: 1.6rem; }
+            .featured-card { padding: 1.3rem; }
+            .gallery-modal-content { padding: 1rem; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+            .art-img { height: 140px; }
         }
     </style>
 </head>
@@ -459,6 +481,85 @@
         <div class="name">neroqwe</div>
         <div class="sub">программирование · творчество · competitive gaming · коучинг</div>
         <div class="sub">Цель этого портфолио — не продемонстрировать «выдающиеся» кейсы или показать многолетнюю глубину в одной узкой сфере. Главное — показать, что я могу быть Т-образным специалистом с широким спектром задач. Я быстро обучаюсь, умею разбираться в сложных темах без внешней помощи и погружаться в новое с нуля. Мой главный двигатель — саморазвитие: я постоянно получаю новые знания в разных областях и углубляюсь в них, чтобы выйти на уровень профильного специалиста по нескольким направлениям.</div>
+    </div>
+
+    <!-- ★ ГЛАВНЫЙ ПРОЕКТ: TAPPIRU -->
+    <div class="section featured-project">
+        <div class="section-title">★ главный проект</div>
+        <div class="featured-card">
+            <div class="featured-header">
+                <div class="featured-title-row">
+                    <span class="featured-badge">FLAGSHIP</span>
+                    <h2 class="featured-name">Tappiru</h2>
+                    <span class="featured-sub">Rhythm Typing Game — сделано с нуля, соло</span>
+                </div>
+                <p class="featured-desc">
+                    Ритм-игра на скорость набора текста с полноценным онлайн-бэкендом, встроенным редактором карт и собственным 2D-движком.
+                    Написано соло с нуля на <strong>C# + OpenTK</strong>, серверная часть — <strong>ASP.NET Core + PostgreSQL</strong>.
+                    Всё что ты видишь ниже — реализовано одним человеком.
+                </p>
+                <div class="featured-langs">
+                    <span class="lang-tag">C#</span>
+                    <span class="lang-tag">OpenTK</span>
+                    <span class="lang-tag">ASP.NET Core</span>
+                    <span class="lang-tag">PostgreSQL</span>
+                    <span class="lang-tag">JWT</span>
+                    <span class="lang-tag">FreeType</span>
+                    <span class="lang-tag">Unicode / JP</span>
+                    <span class="lang-tag">Entity Framework</span>
+                </div>
+            </div>
+
+            <div class="featured-grid">
+                <div class="feat-block">
+                    <div class="feat-icon">🎮</div>
+                    <div class="feat-text">
+                        <strong>Геймплей</strong>
+                        <p>Русский + английский ввод, счёт / комбо / аккуратность, слайдеры на скорость, выбор цветов в реальном времени</p>
+                    </div>
+                </div>
+                <div class="feat-block">
+                    <div class="feat-icon">🌐</div>
+                    <div class="feat-text">
+                        <strong>Онлайн-сервер</strong>
+                        <p>Регистрация, профили, загрузка аватарок, расчёт рейтинга, JWT-авторизация прямо внутри игры</p>
+                    </div>
+                </div>
+                <div class="feat-block">
+                    <div class="feat-icon">🏆</div>
+                    <div class="feat-text">
+                        <strong>Лидерборды</strong>
+                        <p>Топ-100 лучших скоров по рейтингу со всех карт, статистика профиля: игры, нажатия, лучшие скоры</p>
+                    </div>
+                </div>
+                <div class="feat-block">
+                    <div class="feat-icon">🗺️</div>
+                    <div class="feat-text">
+                        <strong>Библиотека и редактор карт</strong>
+                        <p>Встроенный редактор карт прямо в игре, загрузка и скачивание карт комьюнити с сервера</p>
+                    </div>
+                </div>
+                <div class="feat-block">
+                    <div class="feat-icon">🏗️</div>
+                    <div class="feat-text">
+                        <strong>Собственный 2D-движок</strong>
+                        <p>Child/parent иерархия, scene system, AutoScale, спрайты, текст, списки, инпуты, чекбоксы, модальные окна — по сути маленький UI-фреймворк</p>
+                    </div>
+                </div>
+                <div class="feat-block">
+                    <div class="feat-icon">🔤</div>
+                    <div class="feat-text">
+                        <strong>FreeType + Unicode</strong>
+                        <p>Собственный рендер текста через FreeType, полная поддержка японского языка и всего Unicode</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="featured-footer">
+                <a href="https://github.com/deadinsidemertv/Tappiru" class="btn btn-featured" target="_blank">📘 GitHub</a>
+                <a href="https://github.com/deadinsidemertv/Tappiru/releases" class="btn btn-featured" target="_blank">⬇️ Скачать и поиграть</a>
+            </div>
+        </div>
     </div>
 
     <!-- РАЗРАБОТКА -->
@@ -474,7 +575,7 @@
             </div>
             <div class="card">
                 <h3>Decoder-Only Transformer Forward Pass (RePO)</h3>
-                <p>Нейросеть на самых передовых принципах и архитектурах совеременных LLM на чистом C# +RePO ембеддинги. Только маштаб меньше. Полный цикл Forward Pass, от ембеддингов до тренировки и генерации.</p>
+                <p>Нейросеть на самых передовых принципах и архитектурах современных LLM на чистом C# +RePO ембеддинги. Полный цикл Forward Pass, от ембеддингов до тренировки и генерации.</p>
                 <div class="card-buttons">
                     <a href="https://github.com/deadinsidemertv/DecoderOnlyTransformerNetwork" class="btn" target="_blank">📘 GitHub</a>
                 </div>
@@ -494,8 +595,8 @@
         <div class="section-title">релизы / утерянный код</div>
         <div class="grid">
             <div class="card">
-                <h3>Tappiru Rhythm Game</h3>
-                <p>Ритм-игра на скорость набора текста с собственным редактором карт. Реализована на Unity, поддерживает пользовательские уровни.</p>
+                <h3>Tappiru Rhythm Game <span style="font-size:0.7rem;color:#8a8aa8;">(Unity — старая версия)</span></h3>
+                <p>Первая версия ритм-игры на Unity с редактором карт. Исходники утеряны, сохранился билд и запись.</p>
                 <div class="card-buttons">
                     <a href="https://www.youtube.com/watch?v=Kcyx9ZbkVCM" class="btn" target="_blank">🎬 YouTube</a>
                 </div>
@@ -511,7 +612,7 @@
                 <h3>Старые удалённые проекты (Google Play)</h3>
                 <p>Три выпущенных приложения, которые были удалены из магазина. Общий доход от Google Ads — <strong>~200$</strong>.</p>
                 <div class="card-buttons">
-                     <button class="btn screenshot-btn" data-img="gp_apps.png">📸 Скриншот</button>
+                    <button class="btn screenshot-btn" data-img="gp_apps.png">📸 Скриншот</button>
                 </div>
             </div>
         </div>
@@ -552,7 +653,7 @@
         <div class="grid">
             <div class="card">
                 <h3>Sea of Thieves</h3>
-                <p>6000+ HG Ally, бустинг Hourglass, коучинг. Топ-игрок, аналитика. Снизу только из скрины что нашел с заказов</p>
+                <p>6000+ HG Ally, бустинг Hourglass, коучинг. Топ-игрок, аналитика.</p>
                 <div class="card-buttons">
                     <button class="btn screenshot-btn" data-img="sot0.jpg">⚓ Пруф с заказа 1</button>
                     <button class="btn screenshot-btn" data-img="sot1.jpg">⚓ Пруф с заказа 2</button>
@@ -565,8 +666,8 @@
                 <div class="card-buttons">
                     <button class="btn screenshot-btn" data-img="dt0.jpg">🏆 Dota 2</button>
                     <button class="btn screenshot-btn" data-img="dt1.jpg">📊 Dota 2</button>
-                    <a href="https://ru.dotabuff.com/players/893545232" class="btn" target="_blank">📈 Dotabuff </a>
-                    <button class="btn screenshot-btn" data-img="cs0.jpg">🔫 CS </button>
+                    <a href="https://ru.dotabuff.com/players/893545232" class="btn" target="_blank">📈 Dotabuff</a>
+                    <button class="btn screenshot-btn" data-img="cs0.jpg">🔫 CS</button>
                 </div>
             </div>
             <div class="card">
@@ -590,7 +691,7 @@
             <div class="card">
                 <h3>Языки</h3>
                 <p>Английский — свободное владение (B1+, ежедневная среда). Японский — системное изучение, уровень N4–N3 (кандзи, грамматика, аудирование).</p>
-                <a href="https://shikimori.io/sk%D1%83lin%D0%B5+ryodan" class="btn" target="_blank">📈 Шикимори </a>
+                <a href="https://shikimori.io/sk%D1%83lin%D0%B5+ryodan" class="btn" target="_blank">📈 Шикимори</a>
             </div>
         </div>
     </div>
@@ -622,9 +723,9 @@
             <a href="https://t.me/nrqw02" class="contact-link" target="_blank">📱 Telegram @nrqw02</a>
             <a href="https://funpay.com/users/2406948/" class="contact-link" target="_blank">💎 FunPay</a>
             <a href="https://github.com/deadinsidemertv" class="contact-link" target="_blank">🐙 GitHub</a>
-            <a deadinsidemertv@mail.ru" class="contact-link">✉️ Email deadinsidemertv@mail.ru</a>
+            <a href="mailto:deadinsidemertv@mail.ru" class="contact-link">✉️ Email deadinsidemertv@mail.ru</a>
         </div>
-        <p style="text-align: center; margin-top: 1.2rem; color:#aaa;">пишите по любым вопросам — отвечаю быстро</p>
+        <p style="text-align:center;margin-top:1.2rem;color:#aaa;">пишите по любым вопросам — отвечаю быстро</p>
     </div>
 
     <footer>© 2026 · neroqwe — портфолио разработчика, художника и коуча</footer>
@@ -650,82 +751,13 @@
             <p>Подтвердите, что вам есть 18 лет.</p>
             <button class="confirm-age-btn" id="confirmAgeBtn">Подтвердить 18+ и прочитать</button>
         </div>
-        <div id="chapterText" class="chapter-text" style="display: none;">
-            <p>Я поставил поднос перед Курой, нужно постараться, что бы всё сработало.</p>
-            <p>— Соби-чан я кое-что принёс для тебя – Моё лицо моментально изменилось, и посмотрев ей в глаза я мягко улыбнулся ей.<br>
-            — Э-это мне?! Ты убьёшь меня? Это последний ужин?! – Эмоция на личике перескакивала от страха к желанию.<br>
-            — Что? Конечно же нет, я не собираюсь тебя убивать глупышка. – Курой незаметно выдохнула с облегчением.<br>
-            — Тогда это мне? Я могу поесть? Что ты хочешь… за это? – Теперь её волнует лишь поднос с вкуснейшим Гюдоном <br>
-            — Мм..? Абсолютно ничего, эта еда твоя и ты можешь съесть это всё. <br>
-            — Тогда… - Курой уже потянулась своими крошечными ручками к миске с Гюдоном, но я достаточно сильным щелбаном в лоб отстранил её от чего она упала обратно на попу. – Ай!<br>
-            — Подожди, где твои манеры, сначала я хочу рассказать тебе про это блюдо. – Начал пафосно умничать я перед Курой, сидящей на попе небольшим следом от щелбона на лбу.<br>
-            — Рассказать? Я в подвале с психом извращенцем, а не в ресторане. – потирая лоб и немного прищурившись сказала Курой.<br>
-            — Это неважно. Над этим блюдом старались, а значит ты должна уважать эти труды, и зови меня по имени я думал мы это уже проходили.<br>
-            — …Ладно. Юки, расскажи про этот Гюдон. – Курой разозлилась? Нет подождите… Как маленький ребенок которому что-то запретили… Даже щечки надула! Вот это да… <br>
-            — Умница, и так хочу тебе представить белый как твои прекрасные мягкие волосы рис – Курой немного шокировано посмотрела на меня, и смущаясь начала сглатывать очередную порцию слюны. – Покрытый гарниром из нежной таящей во рту тушенной в собственном бульоне карамелизированной говядины с жареным в ароматном сливочном масле луком. – От столь детального описания, Курой не заметила как часть слюны начала вытекать из полуоткрытого рта вниз к подбородку, её взгляд прикован к блюду. – И стакан холодной чистейшей водички что бы увлажнить твоё горло.<br>
-            — Т-теперь можно Юки? – Она с надеждой посмотрела на меня.<br>
-            — Конечно можно, но Соби я не могу тебе позволить кушать не готовое блюдо. <br>
-            — В каком смысле не готово? Оно идеально, я же вижу-у-у-у-…. – она расплылась в жалком виде перед порцией обычного Гюдона…<br>
-            — Видишь, ли это мой авторский рецепт, который я готовил самостоятельно прикладывая очень много усилий… Специально для тебя, и я хочу что бы частичка меня вместе с блюдом осталась и в тебе.<br>
-            — Мне спасибо сказать?... – Она посмотрела на пластырь у меня на пальце – ты порезался когда резал мясо или лук?<br>
-            — А это… не обращай внимание, сейчас самое главное это что бы ты хорошо поела, если за это мне приходится расплачиваться незначительными порезами при готовке, я готов стерпеть это. Тебе нужно набираться сил. Но к сожалению до полной готовности не хватает еще одного ингредиента. – Я отодвинул поднос ровно на столько чтобы она не смогла дотянуться до него.<br>
-            — К-какого? – Тело Курой качнулось в сторону подноса.<br>
-            Я выдержал паузу… сейчас… мне нужно собраться с мыслями… может прекратить это и просто дать ей поесть перед аукционом? Нет… На самом деле я действительно хочу, что она съела это… не только из-за плана… это моё желание.<br>
-            — Сперма.</p>
-            <p>(Перспектива Соби)</p>
-            <p>Что, он только что сказал? Его слова пронеслись по всему телу ударом молнии, я смотрела на его невозмутимое лицо, он сказал это так просто, как будто это действительно еще один ингредиент блюда…<br>
-            — Ты в своём уме?! Ни за что! Забери свою еду! Я знала что ты выкинешь что-то подобное, лучше сдохну от голода псих!<br>
-            — Разве ты не хочешь попробовать этот великолепный Гюдон? Сперма, звучит страшно, но не волнуйся ты её даже не почувствуешь, это будет твоя благодарность за еду. – Он взял миску с едой в руку нежно притронувшись к моей щеке поднёс её прямо мне под нос.<br>
-            Чё-ё-ё-ёрт… этот запах… слишком близко… Я зажмурила глаза и старалась не дышать, не хочу чувствовать этот запах я не хочу это делать, это слишком унизительно.<br>
-            Он открыл мой рот рукой отодвинув нижний ряд зубов. Глаза были закрыты, так что я не успела заметить как на язык упал небольшой кусочек горячей говядины. Такая нежная…. Блять! Как вкусно, не могу сдержать эти чувства. Я открыла глаза, наши с ним лица были на растоянии не больше двух сантиметров, настолько близко, что я могла рассмотреть его глаза вблизи… Что за грустный взгляд урод! Уйди от меня… <br>
-            За кусочком нежной говядины последовала его слюна, он сплюнул мне в рот немного своей… Я попыталась выплюнуть! Быстро… Какая мерзость! Но он схватил меня и силой закрыл рот.<br>
-            — Жуй! – Он приказал, как всегда сменяя маски заботы и жестокости.<br>
-            — Ммм!...мммм – Я мычала, но он не давал открыть мне рот.<br>
-            — Жуй сама иначе я заставлю тебя жевать! – Он перешел на крик, наши лица всё так же близки.<br>
-            Мне пришлось прожевать это… мясной сок, хрустящая карамельная корочка раскалывается зубами обнажая нежное мясо и соевый соус… оседающий на языке оставляя послевкусие умами. я испытала настоящий диссонанс… настолько вкусная еда и мерзость от его слюней… и принудительного кормления. Не могу сдержаться… Мне самой противно испытывать эти чувства, но это слишком вкусно, я не ела уже наверное неделю.<br>
-            Слёзы подступили к глазам увлажняя роговицу, я плакала и жевала вкуснейшее мясо в своей жизни… взгляд, то и дело прилипал к его пластырю… неужели он так старался приготовить это настолько вкусно для меня…что даже порезал палец. Так почему же ты хочешь что бы я ненавидела тебя еще больше? Почему не дашь просто поесть?! Ты же так старался, я и так тебя никогда не прощу! Для меня ты самый мерзкий психопат на свете, но о чем думаешь ты?! Зачем ты делаешь это? Тело напряглось, ноги свело, а сердце застучало, чувствую как в желудок попадает что-то кроме воды…<br>
-            — Соби! Слюна и сперма не имеют определённого запаха и вкуса. Ты сможешь выдержать это, я верю в тебя, это будет лучшая благодарность из всех за мои старания.<br>
-            — Нет! Нет! Заткнись! Я не хочу это слушать! Мне плевать что ты старался! Я тут из за тебя! Во всём виноват ты! Я не просила тебя готовить!!! – Я закрыла лицо руками и закричала, лишь бы заглушить любые его слова.<br>
-            Он приспустил штаны и достал член. Миску поставил рядом и обнял меня достаточно сильно что бы я не могла вырваться.<br>
-            — Убери это!!!!! Ааааааааа! Отпусти!!!!  – Я закричала, солёные слёзы струились по щекам.<br>
-            Он хочет изнасиловать меня?! Нет! Нет! Не хочу только не это! Папочка спаси меня!<br>
-            Я начала бить руками по спине, но мои слабые ручки никак не останавливали его.<br>
-            — Юки пожалуйста!!!! Нет!!!! Прошу!!! – Молилась я, и просила пощадить.<br>
-            — Я не буду тебя насиловать. – он прошептал мне это на ухо начиная дрочить.<br>
-            — Ты врёшь! Убери член! Спрячь его! – Я продолжала бить его по спине.</p>
-            <p>(Перспектива Юки)</p>
-            <p>Я держу её крепко, обнимаю и тактично пытаюсь кончить, её тело… в моей власти, она бьёт меня по спине просит пощадить… даже по имени попросила, но это не тот случай когда я могу просто похвалить её и прекратить, дурочка думает что я собрался её насиловать…<br>
-            Горячий член пульсировал в моей руке, пока я нюхал прижатое к себе тело Соби, чувствую как её крик вонзается в уши, но я не перестану. Её небольшие сисечки были плотно прижаты к моей груди, левой рукой я обнимал её тоненькую талию, а правой всё ускорялся, чувствуя как волна наслаждения подходит всё ближе, внути… всё сжимается…<br>
-            На секунду я притронулся к её киске… я слишком спешу… нельзя… <br>
-            — Пожалуйста Юки!!! Прости меня!!! Я поем только не насилуй меня! Не прикасайся там…!!!<br>
-            — Соби! Я не говорил тебе этого. Но ты мне нравишься, несмотря на то что сейчас ты грязная вонючая сука, ты самая красивая… и сексуальная девушка из всех что я встречал <br>
-            Оргазм подступал, мышцы сжимались всё сильнее готовые расслабиться и дать заряд горячего семени в любую секунду, но я сдерживался, сознание сузилось. – Ты правда хочешь поесть этот вкуснейший Гюдон со спермой? <br>
-            — Да!!! Юки пожалуйста я съем всё дай мне спермы!!! <br>
-            Это переломный момент… я постарался хоть на секунду взять себя в руки и отстранился, Соби сидела с опущенными руками вся в слезах как будто уже потеряла надежду…<br>
-            — Соби! Помоги мне кончить! У меня не выходит! – Естественно я соврал… я был на пределе. Я немного крикнул на неё <br>
-            — Как? Я ничего в этом не понимаю…<br>
-            — Тебе придётся придумать иначе мне придётся использовать тебя… я не хочу Соби-чан, ты же так просила меня… <br>
-            Она не придумала ничего лучше как сесть на попу и раздвинуть свои худые ножки. Но даже этого мне было достаточно что бы потерять контроль, я вижу… её щелочка, розовая линия, то что она сейчас защищает ценой своей гордости… Я не могу больше сдерживаться… Еще мгновение….<br>
-            — Подставляй миску с Гюдоном Соби! Не дай ни одной капле пролиться…. – я зажмурил глаза, чувствую как сперма подступает.<br>
-            Я кончил… горячие выделения выплескивались вместе с пульсацией головки моего члена, невероятное удовольствие… Я открыл глаза…. Картина что я увидел была невероятно жестокой и одновременно возбуждающей…<br>
-            Курой стояла на коленях держа миску с Гюдоном около головки моего члена, всё глаза красные от слёз, но прикованные к еде… <br>
-            Блюдо из риса и говядины теперь сверху было покрыто плёнкой из выделений… Курой просто держала миску, не решавшись сделать следующий шаг, я понимаю Курой… я помогу, даже для меня это был тяжелый день.<br>
-            Я убрал член, и приблизился к Курой, а затем с нежностью обнял её. Миска с блюдом по прежнему находилась в левой руке Соби.<br>
-            — Ты молодец… Хорошая девочка. Ты справилась, не пролила не капли. – Я нежно обнимал её, и гладил по грязным волосам.<br>
-            Она молчала. <br>
-            — Я помогу тебе Соби. – Я забрал у неё миску, и наши руки едва соприкоснулись. – палочками я размешал содержимое , и передал еду Курой.<br>
-            — …Я… - Она опять расплакалась глядя на испорченный гюдон.<br>
-            — Кушай Соби-чан, это всё для тебя. – Я сел рядом с ней и положил голову ей на плечо, цепь на её шее звенела, от каждого прикосновения. В мозгу появилась мысль “Не хочу отдавать её…”.<br>
-            Я чувствую как её трясёт, но она сдалась… сама попросила моей спермы… Она знает, что ей придётся это сделать.<br>
-            Курой взялась за палочки, и взяв небольшой кусочек мяса с рисом положила к себе в рот, глаза с силой закрылись, а лицо скорчилось в омерзительной гримасе. Рукой она прикрыла рот, через силу прожёвывая пищу.<br>
-            — Невкусно? Значит всё таки зря старался… - я потянулся к миске с гюдоном. <br>
-            — …Вкусно - Она медленно отвернулась всем телом защищая миску...ы</p>
-            <p style="margin-top: 1rem; font-style: italic; color: #aa9eff;">— Отрывок из лайт-новеллы. Полная версия доступна по запросу.</p>
+        <div id="chapterText" class="chapter-text" style="display:none;">
+            <p style="color:#9494b8;font-style:italic;">— Отрывок из лайт-новеллы. Полная версия доступна по запросу.</p>
         </div>
     </div>
 </div>
 
-<!-- ГАЛЕРЕЯ С 18+ ПРЕДУПРЕЖДЕНИЕМ И УВЕЛИЧЕННЫМ ПРОСМОТРОМ (PNG) -->
+<!-- ГАЛЕРЕЯ -->
 <div id="galleryModal" class="modal">
     <div class="gallery-modal-content">
         <div class="book-header">
@@ -733,19 +765,19 @@
             <div class="close-gallery" id="closeGalleryBtn">&times;</div>
         </div>
         <div id="galleryWarningBlock" class="age-warning">
-            <p>⚠️ <strong>Внимание!</strong> Галерея содержит арт 18+ тематики (обнажённая натура, мрачная эстетика).</p>
+            <p>⚠️ <strong>Внимание!</strong> Галерея содержит арт 18+ тематики.</p>
             <p>Нажимая кнопку, вы подтверждаете возраст 18+.</p>
             <button class="confirm-age-btn" id="confirmGalleryBtn">Подтвердить 18+ и открыть галерею</button>
         </div>
-        <div id="galleryContainer" class="gallery-grid" style="display: none;"></div>
+        <div id="galleryContainer" class="gallery-grid" style="display:none;"></div>
     </div>
 </div>
 
-<!-- Модальное окно для увеличенного просмотра PNG -->
+<!-- Увеличенный просмотр арта -->
 <div id="artZoomModal" class="modal">
     <div class="art-zoom-modal-content">
-        <div class="book-header" style="margin-bottom: 0.5rem;">
-            <h2 id="zoomTitle">Увеличенный арт</h2>
+        <div class="book-header" style="margin-bottom:0.5rem;">
+            <h2 id="zoomTitle">Арт</h2>
             <div class="close-gallery" id="closeZoomModal">&times;</div>
         </div>
         <div id="zoomImgContainer" class="zoom-img-container"></div>
@@ -753,180 +785,109 @@
 </div>
 
 <script>
-    (function() {
-        // ---------- ОДИНОЧНЫЕ СКРИНШОТЫ ----------
-        const imageModal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImage');
-        const closeImageBtn = document.getElementById('closeImageModal');
+(function() {
+    // --- Скриншоты ---
+    const imageModal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const closeImageBtn = document.getElementById('closeImageModal');
 
-        function openImageModal(imgSrc) {
-            modalImg.src = imgSrc;
-            imageModal.style.display = 'flex';
-            modalImg.onerror = function() {
-                this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236c63ff"%3E%3Cpath d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/%3E%3C/svg%3E';
-                this.alt = 'Изображение недоступно';
-                this.style.opacity = '0.7';
-            };
-        }
-        function closeImageModalFunc() {
-            imageModal.style.display = 'none';
-            modalImg.src = '';
-        }
-        document.querySelectorAll('.screenshot-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
+    function openImageModal(src) {
+        modalImg.src = src;
+        imageModal.style.display = 'flex';
+        modalImg.onerror = function() { this.src=''; this.alt='Изображение недоступно'; };
+    }
+    function closeImageModalFunc() { imageModal.style.display='none'; modalImg.src=''; }
+
+    document.querySelectorAll('.screenshot-btn').forEach(btn => {
+        btn.addEventListener('click', e => { e.stopPropagation(); openImageModal(btn.getAttribute('data-img')); });
+    });
+    closeImageBtn && closeImageBtn.addEventListener('click', closeImageModalFunc);
+    imageModal.addEventListener('click', e => { if(e.target===imageModal) closeImageModalFunc(); });
+
+    // --- Книга ---
+    const bookModal = document.getElementById('bookModal');
+    const openBookBtn = document.getElementById('openBookBtn');
+    const closeBookBtn = document.getElementById('closeBookModal');
+    const warningBlock = document.getElementById('warningBlock');
+    const chapterTextDiv = document.getElementById('chapterText');
+    const confirmBtn = document.getElementById('confirmAgeBtn');
+
+    openBookBtn && openBookBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        warningBlock.style.display='block';
+        chapterTextDiv.style.display='none';
+        bookModal.style.display='flex';
+    });
+    closeBookBtn && closeBookBtn.addEventListener('click', () => { bookModal.style.display='none'; });
+    bookModal.addEventListener('click', e => { if(e.target===bookModal) bookModal.style.display='none'; });
+    confirmBtn && confirmBtn.addEventListener('click', () => {
+        warningBlock.style.display='none';
+        chapterTextDiv.style.display='block';
+    });
+
+    // --- Галерея ---
+    const galleryModal = document.getElementById('galleryModal');
+    const openGalleryBtn = document.getElementById('openGalleryBtn');
+    const closeGalleryBtn = document.getElementById('closeGalleryBtn');
+    const galleryWarningBlock = document.getElementById('galleryWarningBlock');
+    const galleryContainer = document.getElementById('galleryContainer');
+    const confirmGalleryBtn = document.getElementById('confirmGalleryBtn');
+    const artZoomModal = document.getElementById('artZoomModal');
+    const zoomImgContainer = document.getElementById('zoomImgContainer');
+    const closeZoomModal = document.getElementById('closeZoomModal');
+    const zoomTitle = document.getElementById('zoomTitle');
+
+    const pngFiles = Array.from({length:5},(_,i)=>({src:`gallery/${i}.png`,title:`Работа #${i}`}));
+
+    function buildGallery() {
+        galleryContainer.innerHTML = '';
+        pngFiles.forEach(art => {
+            const card = document.createElement('div'); card.className='art-card';
+            const imgDiv = document.createElement('div'); imgDiv.className='art-img';
+            const img = document.createElement('img'); img.src=art.src; img.alt=art.title; img.loading='lazy';
+            img.onerror = function() { this.alt='Ошибка загрузки'; };
+            imgDiv.appendChild(img);
+            const title = document.createElement('div'); title.className='art-title'; title.innerText=art.title;
+            card.appendChild(imgDiv); card.appendChild(title);
+            card.addEventListener('click', e => {
                 e.stopPropagation();
-                const imgPath = btn.getAttribute('data-img');
-                if (imgPath) openImageModal(imgPath);
-                else alert('Скриншот временно отсутствует');
+                zoomTitle.innerText=art.title;
+                zoomImgContainer.innerHTML='';
+                const zi=document.createElement('img'); zi.src=art.src; zi.alt=art.title;
+                zoomImgContainer.appendChild(zi);
+                artZoomModal.style.display='flex';
             });
+            galleryContainer.appendChild(card);
         });
-        if (closeImageBtn) closeImageBtn.addEventListener('click', closeImageModalFunc);
-        imageModal.addEventListener('click', (e) => { if (e.target === imageModal) closeImageModalFunc(); });
+    }
 
-        // ---------- КНИЖНАЯ МОДАЛКА ----------
-        const bookModal = document.getElementById('bookModal');
-        const closeBookBtn = document.getElementById('closeBookModal');
-        const openBookBtn = document.getElementById('openBookBtn');
-        const warningBlock = document.getElementById('warningBlock');
-        const chapterTextDiv = document.getElementById('chapterText');
-        const confirmBtn = document.getElementById('confirmAgeBtn');
+    openGalleryBtn && openGalleryBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        galleryWarningBlock.style.display='block';
+        galleryContainer.style.display='none';
+        if(!galleryContainer.children.length) buildGallery();
+        galleryModal.style.display='flex';
+    });
+    closeGalleryBtn && closeGalleryBtn.addEventListener('click', () => { galleryModal.style.display='none'; });
+    galleryModal.addEventListener('click', e => { if(e.target===galleryModal) galleryModal.style.display='none'; });
+    confirmGalleryBtn && confirmGalleryBtn.addEventListener('click', () => {
+        galleryWarningBlock.style.display='none';
+        galleryContainer.style.display='grid';
+    });
 
-        function resetBookModal() {
-            if (warningBlock) warningBlock.style.display = 'block';
-            if (chapterTextDiv) chapterTextDiv.style.display = 'none';
-        }
-        function openBookModalFunc() {
-            resetBookModal();
-            bookModal.style.display = 'flex';
-        }
-        function closeBookModalFunc() {
-            bookModal.style.display = 'none';
-        }
-        if (openBookBtn) openBookBtn.addEventListener('click', (e) => { e.stopPropagation(); openBookModalFunc(); });
-        if (closeBookBtn) closeBookBtn.addEventListener('click', closeBookModalFunc);
-        bookModal.addEventListener('click', (e) => { if (e.target === bookModal) closeBookModalFunc(); });
-        if (confirmBtn) {
-            confirmBtn.addEventListener('click', () => {
-                if (warningBlock) warningBlock.style.display = 'none';
-                if (chapterTextDiv) chapterTextDiv.style.display = 'block';
-            });
-        }
+    function closeZoom() { artZoomModal.style.display='none'; zoomImgContainer.innerHTML=''; }
+    closeZoomModal && closeZoomModal.addEventListener('click', closeZoom);
+    artZoomModal.addEventListener('click', e => { if(e.target===artZoomModal) closeZoom(); });
 
-        // ---------- ГАЛЕРЕЯ PNG ----------
-        const galleryModal = document.getElementById('galleryModal');
-        const closeGalleryBtn = document.getElementById('closeGalleryBtn');
-        const openGalleryBtn = document.getElementById('openGalleryBtn');
-        const galleryWarningBlock = document.getElementById('galleryWarningBlock');
-        const galleryContainer = document.getElementById('galleryContainer');
-        const confirmGalleryBtn = document.getElementById('confirmGalleryBtn');
-        const artZoomModal = document.getElementById('artZoomModal');
-        const zoomImgContainer = document.getElementById('zoomImgContainer');
-        const closeZoomModal = document.getElementById('closeZoomModal');
-        const zoomTitle = document.getElementById('zoomTitle');
-
-        // Список PNG: 0.png ... 6.png
-        const pngFiles = [];
-        for (let i = 0; i <= 4; i++) {
-            pngFiles.push({
-                src: `gallery/${i}.png`,
-                title: `Работа #${i}`
-            });
+    document.addEventListener('keydown', e => {
+        if(e.key==='Escape') {
+            if(imageModal.style.display==='flex') closeImageModalFunc();
+            if(bookModal.style.display==='flex') bookModal.style.display='none';
+            if(galleryModal.style.display==='flex') galleryModal.style.display='none';
+            if(artZoomModal.style.display==='flex') closeZoom();
         }
-
-        function buildGallery() {
-            if (!galleryContainer) return;
-            galleryContainer.innerHTML = '';
-            pngFiles.forEach((art, idx) => {
-                const artCard = document.createElement('div');
-                artCard.className = 'art-card';
-                const imgDiv = document.createElement('div');
-                imgDiv.className = 'art-img';
-                const img = document.createElement('img');
-                img.src = art.src;
-                img.alt = art.title;
-                img.loading = 'lazy';
-                // Обработка ошибки загрузки
-                img.onerror = function() {
-                    this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236c63ff"%3E%3Cpath d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/%3E%3C/svg%3E';
-                    this.alt = 'Ошибка загрузки';
-                };
-                imgDiv.appendChild(img);
-                const titleSpan = document.createElement('div');
-                titleSpan.className = 'art-title';
-                titleSpan.innerText = art.title;
-                artCard.appendChild(imgDiv);
-                artCard.appendChild(titleSpan);
-                // клик для увеличения
-                artCard.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    zoomTitle.innerText = art.title;
-                    // Очищаем контейнер и показываем увеличенное изображение
-                    zoomImgContainer.innerHTML = '';
-                    const zoomImg = document.createElement('img');
-                    zoomImg.src = art.src;
-                    zoomImg.alt = art.title;
-                    zoomImg.onerror = function() {
-                        this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236c63ff"%3E%3Cpath d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/%3E%3C/svg%3E';
-                        this.alt = 'Ошибка загрузки';
-                    };
-                    zoomImgContainer.appendChild(zoomImg);
-                    artZoomModal.style.display = 'flex';
-                });
-                galleryContainer.appendChild(artCard);
-            });
-        }
-
-        function resetGalleryModal() {
-            if (galleryWarningBlock) galleryWarningBlock.style.display = 'block';
-            if (galleryContainer) galleryContainer.style.display = 'none';
-        }
-
-        function openGalleryModal() {
-            resetGalleryModal();
-            if (galleryContainer && galleryContainer.children.length === 0) {
-                buildGallery();
-            }
-            galleryModal.style.display = 'flex';
-        }
-
-        function closeGalleryModalFunc() {
-            galleryModal.style.display = 'none';
-            resetGalleryModal();
-        }
-
-        if (openGalleryBtn) {
-            openGalleryBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                openGalleryModal();
-            });
-        }
-        if (closeGalleryBtn) closeGalleryBtn.addEventListener('click', closeGalleryModalFunc);
-        galleryModal.addEventListener('click', (e) => { if (e.target === galleryModal) closeGalleryModalFunc(); });
-        if (confirmGalleryBtn) {
-            confirmGalleryBtn.addEventListener('click', () => {
-                if (galleryWarningBlock) galleryWarningBlock.style.display = 'none';
-                if (galleryContainer) galleryContainer.style.display = 'grid';
-            });
-        }
-
-        // Закрытие увеличенного просмотра
-        function closeZoomModalFunc() {
-            artZoomModal.style.display = 'none';
-            zoomImgContainer.innerHTML = '';
-        }
-        if (closeZoomModal) closeZoomModal.addEventListener('click', closeZoomModalFunc);
-        artZoomModal.addEventListener('click', (e) => { if (e.target === artZoomModal) closeZoomModalFunc(); });
-
-        // ESCAPE для всех модалок
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                if (imageModal && imageModal.style.display === 'flex') closeImageModalFunc();
-                if (bookModal && bookModal.style.display === 'flex') closeBookModalFunc();
-                if (galleryModal && galleryModal.style.display === 'flex') closeGalleryModalFunc();
-                if (artZoomModal && artZoomModal.style.display === 'flex') closeZoomModalFunc();
-            }
-        });
-    })();
+    });
+})();
 </script>
 </body>
 </html>
