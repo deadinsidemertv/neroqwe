@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>neroqwe · портфолио | разработка, творчество, коучинг</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #0a0a0e;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', 'Roboto', sans-serif;
+            color: #e5e5f0;
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .header {
+            margin-bottom: 3rem;
+            border-bottom: 1px solid #2a2a33;
+            padding-bottom: 1.5rem;
+        }
+
+        .name {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #f0f0ff 0%, #b2aeff 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .sub { color: #8a8aa8; margin-top: 0.5rem; font-size: 1rem; font-weight: 450; }
+
+        .section { margin-bottom: 3rem; }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+            color: #c2c2ff;
+            border-left: 3px solid #6c63ff;
+            padding-left: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: #12121a;
+            border-radius: 1.25rem;
+            padding: 1.4rem 1.5rem;
+            border: 1px solid #252530;
+            transition: 0.2s ease-in-out;
+        }
+
+        .card:hover {
+            border-color: #6c63ff80;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.5);
+        }
+
+        .card h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem; color: #dbd9ff; }
+        .card p { color: #b9b9d0; font-size: 0.9rem; margin: 0.5rem 0; line-height: 1.45; }
+
+        .card-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            background: #2a2a38;
+            padding: 0.45rem 1.1rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #ddd9ff;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn:hover { background: #6c63ff; color: #0a0a0e; transform: scale(0.97); }
+
+        /* ======= FEATURED BLOCK ======= */
+        .featured-project .section-title {
+            border-left-color: #a78bfa;
+            color: #e0d9ff;
+            font-size: 1.8rem;
+        }
+
+        .featured-card {
+            background: linear-gradient(135deg, #0f0f1a 0%, #141428 60%, #0a0a18 100%);
+            border: 1px solid #4c4aaa60;
+            border-radius: 1.75rem;
+            padding: 2rem 2.2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 60px -10px #6c63ff30, 0 20px 40px -15px rgba(0,0,0,0.7);
+        }
+
+        .featured-card::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, #6c63ff18 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .featured-header { margin-bottom: 1.8rem; }
+
+        .featured-title-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .featured-badge {
+            background: linear-gradient(135deg, #6c63ff, #a78bfa);
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            padding: 0.25rem 0.7rem;
+            border-radius: 2rem;
+            text-transform: uppercase;
+        }
+
+        .featured-name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, #c4b5fd 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .featured-sub {
+            color: #8a8ac8;
+            font-size: 0.95rem;
+        }
+
+        .featured-desc {
+            color: #c5c5e0;
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 780px;
+            margin-bottom: 1.2rem;
+        }
+
+        .featured-desc strong { color: #d4caff; }
+
+        .featured-langs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .lang-tag {
+            background: #1e1e30;
+            border: 1px solid #3a3a5a;
+            color: #a0a0cc;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.2rem 0.7rem;
+            border-radius: 1rem;
+        }
+
+        /* Новые стили для GIFs и скриншотов */
+        .featured-gifs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 1.2rem;
+            margin: 1.8rem 0;
+        }
+
+        .gif-container {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid #3a3a5a;
+            background: #0a0a12;
+        }
+
+        .gif-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .gif-label {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 1rem;
+            pointer-events: none;
+        }
+
+        .screenshots-btn {
+            background: linear-gradient(135deg, #6c63ff, #9b8cff);
+            color: #fff;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        .featured-footer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .btn-featured {
+            background: linear-gradient(135deg, #6c63ff, #9b8cff);
+            color: #fff;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 2rem;
+        }
+
+        .btn-featured:hover {
+            background: linear-gradient(135deg, #8075ff, #b0a5ff);
+            color: #fff;
+            transform: scale(0.97);
+        }
+
+        /* Остальные стили (без изменений) */
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        .contact-link {
+            background: #1a1a24;
+            padding: 0.6rem 1.4rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            color: #e0dcff;
+            font-weight: 500;
+            border: 1px solid #333344;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .contact-link:hover { background: #6c63ff; border-color: #6c63ff; color: #0a0a0e; }
+
+        footer {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #6a6a82;
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #20202a;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            max-width: 90%; max-height: 90%;
+            background: #1e1e2a;
+            border-radius: 1.2rem;
+            padding: 0.8rem;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.6);
+            cursor: default;
+            border: 1px solid #6c63ff40;
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 0.75rem;
+            display: block;
+            object-fit: contain;
+        }
+
+        .screenshots-modal-content {
+            max-width: 1100px;
+            width: 92%;
+            background: #12121a;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid #6c63ff;
+            max-height: 92vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .screenshots-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #2a2a33;
+            padding-bottom: 0.75rem;
+        }
+
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+            overflow-y: auto;
+            max-height: calc(92vh - 120px);
+            padding-right: 10px;
+        }
+
+        .screenshot-card {
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid #2f2f3e;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .screenshot-card:hover {
+            transform: scale(1.02);
+            border-color: #6c63ff;
+        }
+
+        .screenshot-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Медиа */
+        @media (max-width: 700px) {
+            .name { font-size: 2rem; }
+            .featured-gifs { grid-template-columns: 1fr; }
+            .featured-name { font-size: 1.6rem; }
+            .featured-card { padding: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="name">neroqwe</div>
+        <div class="sub">программирование · творчество · competitive gaming · коучинг</div>
+        <div class="sub">Цель этого портфолио — не продемонстрировать «выдающиеся» кейсы или показать многолетнюю глубину в одной узкой сфере. Главное — показать, что я могу быть Т-образным специалистом с широким спектром задач. Я быстро обучаюсь, умею разбираться в сложных темах без внешней помощи и погружаться в новое с нуля. Мой главный двигатель — саморазвитие: я постоянно получаю новые знания в разных областях и углубляюсь в них, чтобы выйти на уровень профильного специалиста по нескольким направлениям.</div>
+    </div>
+
+    <!-- ★ ГЛАВНЫЙ ПРОЕКТ: TAPPIRU -->
+    <div class="section featured-project">
+        <div class="section-title">★ главный проект</div>
+        <div class="featured-card">
+            <div class="featured-header">
+                <div class="featured-title-row">
+                    <span class="featured-badge">FLAGSHIP</span>
+                    <h2 class="featured-name">Tappiru</h2>
+                    <span class="featured-sub">Rhythm Typing Game — сделано с нуля, соло</span>
+                </div>
+                <p class="featured-desc">
+                    Ритм-игра на скорость набора текста с полноценным онлайн-бэкендом, встроенным редактором карт и собственным 2D-движком.
+                    Написано соло с нуля на <strong>C# + OpenTK</strong>, серверная часть — <strong>ASP.NET Core + PostgreSQL</strong>.
+                    Всё что ты видишь ниже — реализовано одним человеком.
+                </p>
+                <div class="featured-langs">
+                    <span class="lang-tag">C#</span>
+                    <span class="lang-tag">OpenTK</span>
+                    <span class="lang-tag">ASP.NET Core</span>
+                    <span class="lang-tag">PostgreSQL</span>
+                    <span class="lang-tag">JWT</span>
+                    <span class="lang-tag">FreeType</span>
+                    <span class="lang-tag">Unicode / JP</span>
+                    <span class="lang-tag">Entity Framework</span>
+                </div>
+            </div>
+
+            <!-- === GIF АНИМАЦИИ ИГРЫ === -->
+            <div class="featured-gifs">
+                <div class="gif-container">
+                    <img src="gif1.gif" alt="Tappiru Gameplay 1" loading="eager">
+                    <div class="gif-label">Геймплей 1</div>
+                </div>
+                <div class="gif-container">
+                    <img src="gif2.gif" alt="Tappiru Gameplay 2" loading="eager">
+                    <div class="gif-label">Геймплей 2 </div>
+                </div>
+            </div>
+
+            <div class="featured-footer">
+                <a href="https://github.com/deadinsidemertv/Tappiru" class="btn btn-featured" target="_blank">📘 GitHub</a>
+                <a href="https://github.com/deadinsidemertv/Tappiru/releases" class="btn btn-featured" target="_blank">⬇️ Скачать и поиграть</a>
+                <button class="btn screenshots-btn" id="openScreenshotsBtn">📸 Скриншоты из игры</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- РАЗРАБОТКА -->
+    <div class="section">
+        <div class="section-title">разработка</div>
+        <div class="grid">
+            <div class="card">
+                <h3>GPU‑тензоры (C++ / DirectX 11)</h3>
+                <p>Библиотека тензорных выражений без CUDA, шейдеры для матричных операций, ReLU. Полный цикл управления памятью.</p>
+                <div class="card-buttons">
+                    <a href="https://github.com/deadinsidemertv/GPUTensor" class="btn" target="_blank">📘 GitHub</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Decoder-Only Transformer Forward Pass (RePO)</h3>
+                <p>Нейросеть на самых передовых принципах и архитектурах современных LLM на чистом C# +RePO ембеддинги. Полный цикл Forward Pass, от ембеддингов до тренировки и генерации.</p>
+                <div class="card-buttons">
+                    <a href="https://github.com/deadinsidemertv/DecoderOnlyTransformerNetwork" class="btn" target="_blank">📘 GitHub</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Deep Q-Learning AI Agent for Cookie Clicker</h3>
+                <p>Deep Q Learning + target network для Cookie Clicker с тепловой картой. Обучение агента.</p>
+                <div class="card-buttons">
+                    <a href="https://github.com/deadinsidemertv/CookieClickerAI" class="btn" target="_blank">📘 GitHub</a>
+                    <a href="https://www.youtube.com/watch?v=XzQxl8Rod3M" class="btn" target="_blank">🎬 YouTube</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Остальные секции без изменений -->
+    <div class="section">
+        <div class="section-title">релизы / утерянный код</div>
+        <div class="grid">
+            <div class="card">
+                <h3>Tappiru Rhythm Game <span style="font-size:0.7rem;color:#8a8aa8;">(Unity — старая версия)</span></h3>
+                <p>Первая версия ритм-игры на Unity с редактором карт. Исходники утеряны, сохранился билд и запись.</p>
+                <div class="card-buttons">
+                    <a href="https://www.youtube.com/watch?v=Kcyx9ZbkVCM" class="btn" target="_blank">🎬 YouTube</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Куб кликер | Гача</h3>
+                <p>Кликер с элементами гачи: сбор кубов, улучшения, случайные выпадения редкостей. Исходный код утерян, сохранён только билд.</p>
+                <div class="card-buttons">
+                    <a href="https://www.youtube.com/watch?v=Ed1weeh0cNk" class="btn" target="_blank">🎬 YouTube</a>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Старые удалённые проекты (Google Play)</h3>
+                <p>Три выпущенных приложения, которые были удалены из магазина. Общий доход от Google Ads — <strong>~200$</strong>.</p>
+                <div class="card-buttons">
+                    <button class="btn screenshot-btn" data-img="gp_apps.png">📸 Скриншот</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ТВОРЧЕСТВО, ИГРЫ, ПСИХОЛОГИЯ, УСЛУГИ, КОНТАКТЫ — без изменений -->
+    <div class="section">
+        <div class="section-title">творчество</div>
+        <div class="grid">
+            <div class="card">
+                <h3>Литература</h3>
+                <p>Автор лайт-новеллы. Работа над психологической драмой и крупными сюжетными формами.</p>
+                <div class="card-buttons">
+                    <button class="btn" id="openBookBtn">📖 Пример текста</button>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Рисование</h3>
+                <p>Art 2D. Манга, коммишны.</p>
+                <div class="card-buttons">
+                    <button class="btn" id="openGalleryBtn">🎨 Галерея</button>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Видео монтаж</h3>
+                <p>FL Studio, Adobe Premiere, After Effects, Photoshop.</p>
+                <div class="card-buttons">
+                    <a href="https://www.youtube.com/watch?v=BDozRaykLZM" class="btn" target="_blank">✂️ Пример 1</a>
+                    <a href="https://www.youtube.com/watch?v=dwf3hpusdEg&t=38s" class="btn" target="_blank">✂️ Пример 2</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">игры / соревновательный опыт</div>
+        <div class="grid">
+            <div class="card">
+                <h3>Sea of Thieves</h3>
+                <p>6000+ HG Ally, бустинг Hourglass, коучинг. Топ-игрок, аналитика.</p>
+                <div class="card-buttons">
+                    <button class="btn screenshot-btn" data-img="sot0.jpg">⚓ Пруф с заказа 1</button>
+                    <button class="btn screenshot-btn" data-img="sot1.jpg">⚓ Пруф с заказа 2</button>
+                    <button class="btn screenshot-btn" data-img="sot1.png">⚓ Пруф с заказа 3</button>
+                </div>
+            </div>
+            <div class="card">
+                <h3>CS / Dota 2 / другие</h3>
+                <p>LE в CS:GO, 5500 MMR. Администрирование серверов (Minecraft, SAMP), лидерский опыт.</p>
+                <div class="card-buttons">
+                    <button class="btn screenshot-btn" data-img="dt0.jpg">🏆 Dota 2</button>
+                    <button class="btn screenshot-btn" data-img="dt1.jpg">📊 Dota 2</button>
+                    <a href="https://ru.dotabuff.com/players/893545232" class="btn" target="_blank">📈 Dotabuff</a>
+                    <button class="btn screenshot-btn" data-img="cs0.jpg">🔫 CS</button>
+                </div>
+            </div>
+            <div class="card">
+                <h3>FunPay</h3>
+                <p>6 лет на платформе, 120+ отзывов по крупным заказам (бустинг, услуги).</p>
+                <div class="card-buttons">
+                    <a href="https://funpay.com/users/2406948/" class="btn" target="_blank">⭐ Профиль</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">психология & языки</div>
+        <div class="grid">
+            <div class="card">
+                <h3>Психология</h3>
+                <p>Знакомство с МКБ‑10, техниками консультирования, метарефлексия. Понимание механизмов влияния и групповой динамики.</p>
+            </div>
+            <div class="card">
+                <h3>Языки</h3>
+                <p>Английский — свободное владение (B1+, ежедневная среда). Японский — системное изучение, уровень N4–N3 (кандзи, грамматика, аудирование).</p>
+                <a href="https://shikimori.io/sk%D1%83lin%D0%B5+ryodan" class="btn" target="_blank">📈 Шикимори</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">услуги</div>
+        <div class="grid">
+            <div class="card">
+                <h3>Коучинг / наставничество</h3>
+                <p>Sea of Thieves (6000+ HG Ally), общий игровой анализ, разбор реплеев. Индивидуальные занятия.</p>
+                <p><strong>от 2500₽ / час</strong></p>
+            </div>
+            <div class="card">
+                <h3>Разработка (фриланс)</h3>
+                <p>Unity (C#), C++ (алгоритмы, оптимизация), прототипы игр. Работа или доработка.</p>
+            </div>
+            <div class="card">
+                <h3>Иллюстрации / коммишены</h3>
+                <p>Дигитал-арт, дизайн персонажей.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">контакты</div>
+        <div class="contact-links">
+            <a href="https://t.me/nrqw02" class="contact-link" target="_blank">📱 Telegram @nrqw02</a>
+            <a href="https://funpay.com/users/2406948/" class="contact-link" target="_blank">💎 FunPay</a>
+            <a href="https://github.com/deadinsidemertv" class="contact-link" target="_blank">🐙 GitHub</a>
+            <a href="mailto:deadinsidemertv@mail.ru" class="contact-link">✉️ Email deadinsidemertv@mail.ru</a>
+        </div>
+        <p style="text-align:center;margin-top:1.2rem;color:#aaa;">пишите по любым вопросам — отвечаю быстро</p>
+    </div>
+
+    <footer>© 2026 · neroqwe — портфолио разработчика, художника и коуча</footer>
+</div>
+
+<!-- Модальное окно для одиночных скриншотов (существующее) -->
+<div id="imageModal" class="modal">
+    <div class="modal-content">
+        <div class="close-modal" id="closeImageModal">&times;</div>
+        <img id="modalImage" src="" alt="Screenshot preview">
+    </div>
+</div>
+
+<!-- === НОВОЕ МОДАЛЬНОЕ ОКНО ДЛЯ СКРИНШОТОВ TAPPIRU === -->
+<div id="screenshotsModal" class="modal">
+    <div class="screenshots-modal-content">
+        <div class="screenshots-header">
+            <h2>📸 Скриншоты из Tappiru</h2>
+            <div class="close-gallery" id="closeScreenshotsModal">&times;</div>
+        </div>
+        <div id="screenshotsGrid" class="screenshots-grid"></div>
+    </div>
+</div>
+
+<!-- Остальные модальные окна (книга, галерея, зум) остаются без изменений -->
+<div id="bookModal" class="modal">
+    <div class="book-modal-content">
+        <div class="book-header">
+            <h2>📖 Пример текста</h2>
+            <div class="close-book" id="closeBookModal">&times;</div>
+        </div>
+        <div id="warningBlock" class="age-warning">
+            <p>⚠️ <strong>Внимание!</strong> Текст содержит сцены насилия, жестокости и материалы 18+.</p>
+            <p>Подтвердите, что вам есть 18 лет.</p>
+            <button class="confirm-age-btn" id="confirmAgeBtn">Подтвердить 18+ и прочитать</button>
+        </div>
+        <div id="chapterText" class="chapter-text" style="display:none;">
+            <p style="color:#9494b8;font-style:italic;">— Отрывок из лайт-новеллы. Полная версия доступна по запросу.</p>
+        </div>
+    </div>
+</div>
+
+<div id="galleryModal" class="modal">
+    <div class="gallery-modal-content">
+        <div class="book-header">
+            <h2>🎨 Художественная галерея</h2>
+            <div class="close-gallery" id="closeGalleryBtn">&times;</div>
+        </div>
+        <div id="galleryWarningBlock" class="age-warning">
+            <p>⚠️ <strong>Внимание!</strong> Галерея содержит арт 18+ тематики.</p>
+            <p>Нажимая кнопку, вы подтверждаете возраст 18+.</p>
+            <button class="confirm-age-btn" id="confirmGalleryBtn">Подтвердить 18+ и открыть галерею</button>
+        </div>
+        <div id="galleryContainer" class="gallery-grid" style="display:none;"></div>
+    </div>
+</div>
+
+<div id="artZoomModal" class="modal">
+    <div class="art-zoom-modal-content">
+        <div class="book-header" style="margin-bottom:0.5rem;">
+            <h2 id="zoomTitle">Арт</h2>
+            <div class="close-gallery" id="closeZoomModal">&times;</div>
+        </div>
+        <div id="zoomImgContainer" class="zoom-img-container"></div>
+    </div>
+</div>
+
+<script>
+(function() {
+    // --- Скриншоты (одиночные) ---
+    const imageModal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const closeImageBtn = document.getElementById('closeImageModal');
+
+    function openImageModal(src) {
+        modalImg.src = src;
+        imageModal.style.display = 'flex';
+    }
+    function closeImageModalFunc() { 
+        imageModal.style.display='none'; 
+        modalImg.src=''; 
+    }
+
+    document.querySelectorAll('.screenshot-btn').forEach(btn => {
+        btn.addEventListener('click', e => { 
+            e.stopPropagation(); 
+            openImageModal(btn.getAttribute('data-img')); 
+        });
+    });
+    closeImageBtn && closeImageBtn.addEventListener('click', closeImageModalFunc);
+    imageModal.addEventListener('click', e => { if(e.target===imageModal) closeImageModalFunc(); });
+
+    // === TAPPIRU СКРИНШОТЫ ===
+    const screenshotsModal = document.getElementById('screenshotsModal');
+    const closeScreenshotsModal = document.getElementById('closeScreenshotsModal');
+    const screenshotsGrid = document.getElementById('screenshotsGrid');
+    const openScreenshotsBtn = document.getElementById('openScreenshotsBtn');
+
+    // Пример скриншотов — замени на свои пути
+    const tappiruScreenshots = [
+        { src: "Screenshot_4.png", title: "Главное меню" },
+        { src: "Screenshot_1.png", title: "Выбор карт" },
+        { src: "Screenshot_2.png", title: "Редактор карт" },
+        { src: "Screenshot_3.png", title: "Профиль игрока" },
+        { src: "Screenshot_6.png", title: "Лидерборд" },
+        { src: "Screenshot_5.png", title: "Библиотека карт" }
+    ];
+
+    function buildScreenshotsGrid() {
+        screenshotsGrid.innerHTML = '';
+        tappiruScreenshots.forEach(s => {
+            const card = document.createElement('div');
+            card.className = 'screenshot-card';
+            card.innerHTML = `
+                <img src="${s.src}" alt="${s.title}" loading="lazy">
+            `;
+            card.addEventListener('click', () => {
+                openImageModal(s.src);
+            });
+            screenshotsGrid.appendChild(card);
+        });
+    }
+
+    openScreenshotsBtn && openScreenshotsBtn.addEventListener('click', () => {
+        if (!screenshotsGrid.children.length) buildScreenshotsGrid();
+        screenshotsModal.style.display = 'flex';
+    });
+
+    closeScreenshotsModal && closeScreenshotsModal.addEventListener('click', () => {
+        screenshotsModal.style.display = 'none';
+    });
+    screenshotsModal.addEventListener('click', e => {
+        if (e.target === screenshotsModal) screenshotsModal.style.display = 'none';
+    });
+
+    // --- Книга, Галерея, Зум (без изменений) ---
+    const bookModal = document.getElementById('bookModal');
+    const openBookBtn = document.getElementById('openBookBtn');
+    const closeBookBtn = document.getElementById('closeBookModal');
+    const warningBlock = document.getElementById('warningBlock');
+    const chapterTextDiv = document.getElementById('chapterText');
+    const confirmBtn = document.getElementById('confirmAgeBtn');
+
+    openBookBtn && openBookBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        warningBlock.style.display='block';
+        chapterTextDiv.style.display='none';
+        bookModal.style.display='flex';
+    });
+    closeBookBtn && closeBookBtn.addEventListener('click', () => { bookModal.style.display='none'; });
+    bookModal.addEventListener('click', e => { if(e.target===bookModal) bookModal.style.display='none'; });
+    confirmBtn && confirmBtn.addEventListener('click', () => {
+        warningBlock.style.display='none';
+        chapterTextDiv.style.display='block';
+    });
+
+    // Галерея (оставлена как была)
+    const galleryModal = document.getElementById('galleryModal');
+    const openGalleryBtn = document.getElementById('openGalleryBtn');
+    const closeGalleryBtn = document.getElementById('closeGalleryBtn');
+    const galleryWarningBlock = document.getElementById('galleryWarningBlock');
+    const galleryContainer = document.getElementById('galleryContainer');
+    const confirmGalleryBtn = document.getElementById('confirmGalleryBtn');
+    const artZoomModal = document.getElementById('artZoomModal');
+    const zoomImgContainer = document.getElementById('zoomImgContainer');
+    const closeZoomModal = document.getElementById('closeZoomModal');
+    const zoomTitle = document.getElementById('zoomTitle');
+
+    const pngFiles = Array.from({length:5},(_,i)=>({src:`gallery/${i}.png`,title:`Работа #${i}`}));
+
+    function buildGallery() {
+        galleryContainer.innerHTML = '';
+        pngFiles.forEach(art => {
+            const card = document.createElement('div'); card.className='art-card';
+            const imgDiv = document.createElement('div'); imgDiv.className='art-img';
+            const img = document.createElement('img'); img.src=art.src; img.alt=art.title; img.loading='lazy';
+            imgDiv.appendChild(img);
+            const title = document.createElement('div'); title.className='art-title'; title.innerText=art.title;
+            card.appendChild(imgDiv); card.appendChild(title);
+            card.addEventListener('click', e => {
+                e.stopPropagation();
+                zoomTitle.innerText=art.title;
+                zoomImgContainer.innerHTML='';
+                const zi=document.createElement('img'); zi.src=art.src; zi.alt=art.title;
+                zoomImgContainer.appendChild(zi);
+                artZoomModal.style.display='flex';
+            });
+            galleryContainer.appendChild(card);
+        });
+    }
+
+    openGalleryBtn && openGalleryBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        galleryWarningBlock.style.display='block';
+        galleryContainer.style.display='none';
+        if(!galleryContainer.children.length) buildGallery();
+        galleryModal.style.display='flex';
+    });
+    closeGalleryBtn && closeGalleryBtn.addEventListener('click', () => { galleryModal.style.display='none'; });
+    galleryModal.addEventListener('click', e => { if(e.target===galleryModal) galleryModal.style.display='none'; });
+    confirmGalleryBtn && confirmGalleryBtn.addEventListener('click', () => {
+        galleryWarningBlock.style.display='none';
+        galleryContainer.style.display='grid';
+    });
+
+    function closeZoom() { artZoomModal.style.display='none'; zoomImgContainer.innerHTML=''; }
+    closeZoomModal && closeZoomModal.addEventListener('click', closeZoom);
+    artZoomModal.addEventListener('click', e => { if(e.target===artZoomModal) closeZoom(); });
+
+    document.addEventListener('keydown', e => {
+        if(e.key==='Escape') {
+            if(imageModal.style.display==='flex') closeImageModalFunc();
+            if(bookModal.style.display==='flex') bookModal.style.display='none';
+            if(galleryModal.style.display==='flex') galleryModal.style.display='none';
+            if(artZoomModal.style.display==='flex') closeZoom();
+            if(screenshotsModal.style.display==='flex') screenshotsModal.style.display='none';
+        }
+    });
+})();
+</script>
+</body>
+</html>
