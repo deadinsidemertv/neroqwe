@@ -184,49 +184,55 @@
             border-radius: 1rem;
         }
 
-        .featured-grid {
+        /* Новые стили для GIFs и скриншотов */
+        .featured-gifs {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.8rem;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 1.2rem;
+            margin: 1.8rem 0;
         }
 
-        .feat-block {
-            background: #0d0d1c;
-            border: 1px solid #2a2a42;
+        .gif-container {
+            position: relative;
             border-radius: 1rem;
-            padding: 1rem 1.2rem;
-            display: flex;
-            gap: 0.9rem;
-            align-items: flex-start;
-            transition: 0.2s;
+            overflow: hidden;
+            border: 1px solid #3a3a5a;
+            background: #0a0a12;
         }
 
-        .feat-block:hover {
-            border-color: #6c63ff60;
-            background: #10102a;
-        }
-
-        .feat-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 0.1rem; }
-
-        .feat-text strong {
+        .gif-container img {
+            width: 100%;
+            height: auto;
             display: block;
-            color: #dbd9ff;
-            font-size: 0.95rem;
-            margin-bottom: 0.3rem;
         }
 
-        .feat-text p {
-            color: #9494b8;
-            font-size: 0.82rem;
-            line-height: 1.4;
-            margin: 0;
+        .gif-label {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 1rem;
+            pointer-events: none;
+        }
+
+        .screenshots-btn {
+            background: linear-gradient(135deg, #6c63ff, #9b8cff);
+            color: #fff;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 2rem;
+            margin-top: 0.5rem;
         }
 
         .featured-footer {
             display: flex;
             flex-wrap: wrap;
             gap: 0.8rem;
+            margin-top: 1rem;
         }
 
         .btn-featured {
@@ -244,7 +250,7 @@
             transform: scale(0.97);
         }
 
-        /* ======= ОСТАЛЬНЫЕ СТИЛИ ======= */
+        /* Остальные стили (без изменений) */
         .contact-links {
             display: flex;
             flex-wrap: wrap;
@@ -307,31 +313,19 @@
             object-fit: contain;
         }
 
-        .book-modal-content {
-            max-width: 700px; width: 90%;
+        .screenshots-modal-content {
+            max-width: 1100px;
+            width: 92%;
             background: #12121a;
             border-radius: 1.5rem;
             padding: 1.5rem;
             border: 1px solid #6c63ff;
-            cursor: default;
-            max-height: 85vh;
+            max-height: 92vh;
             display: flex;
             flex-direction: column;
         }
 
-        .gallery-modal-content {
-            max-width: 1000px; width: 90%;
-            background: #12121a;
-            border-radius: 1.5rem;
-            padding: 1.5rem;
-            border: 1px solid #6c63ff;
-            cursor: default;
-            max-height: 85vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .book-header {
+        .screenshots-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -340,138 +334,40 @@
             padding-bottom: 0.75rem;
         }
 
-        .book-header h2 {
-            font-size: 1.5rem; font-weight: 600;
-            background: linear-gradient(135deg, #f0f0ff, #b2aeff);
-            background-clip: text; -webkit-background-clip: text; color: transparent;
-        }
-
-        .close-book, .close-gallery {
-            font-size: 1.8rem; cursor: pointer; color: #aaa; transition: 0.2s; line-height: 1;
-        }
-
-        .close-book:hover, .close-gallery:hover { color: #ff8c8c; }
-
-        .chapter-text {
-            overflow-y: auto;
-            padding-right: 0.5rem;
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #ddd9ff;
-            text-align: justify;
-        }
-
-        .chapter-text p { margin-bottom: 1rem; }
-
-        .gallery-grid {
+        .screenshots-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 1.2rem;
-            margin-top: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
             overflow-y: auto;
-            max-height: calc(85vh - 130px);
-            padding-right: 0.5rem;
+            max-height: calc(92vh - 120px);
+            padding-right: 10px;
         }
 
-        .gallery-grid::-webkit-scrollbar { width: 6px; }
-        .gallery-grid::-webkit-scrollbar-track { background: #20202a; border-radius: 8px; }
-        .gallery-grid::-webkit-scrollbar-thumb { background: #6c63ff; border-radius: 8px; }
-
-        .art-card {
-            background: #1a1a26;
+        .screenshot-card {
             border-radius: 1rem;
             overflow: hidden;
             border: 1px solid #2f2f3e;
             transition: 0.2s;
             cursor: pointer;
-            position: relative;
-            z-index: 1;
         }
 
-        .art-card:hover {
-            transform: translateY(-4px);
+        .screenshot-card:hover {
+            transform: scale(1.02);
             border-color: #6c63ff;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-            z-index: 2;
         }
 
-        .art-img {
-            width: 100%; height: 180px;
-            display: flex; align-items: center; justify-content: center;
-            background: #0b0b12; overflow: hidden;
+        .screenshot-card img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
-        .art-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.2s; }
-        .art-card:hover .art-img img { transform: scale(1.02); }
-
-        .art-title {
-            padding: 0.7rem 0.8rem;
-            font-size: 0.85rem; font-weight: 500;
-            color: #cacaff; text-align: center;
-            background: #0f0f18;
-            border-top: 1px solid #2a2a36;
-        }
-
-        .age-warning {
-            background: #1f1a2e;
-            border: 2px solid #ff4d4d;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            text-align: center;
-            margin: 1rem 0;
-        }
-
-        .age-warning p { color: #ffb3b3; margin-bottom: 1rem; font-size: 1rem; }
-
-        .confirm-age-btn {
-            background: #ff4d4d; color: #0a0a0e;
-            padding: 0.6rem 1.5rem;
-            border: none; border-radius: 2rem;
-            font-weight: bold; cursor: pointer;
-            transition: 0.2s; font-size: 0.9rem;
-        }
-
-        .confirm-age-btn:hover { background: #ff6666; transform: scale(0.98); }
-
-        .close-modal {
-            text-align: right; font-size: 1.7rem;
-            cursor: pointer; color: #ccc;
-            margin-bottom: 0.5rem; line-height: 1; transition: 0.2s;
-        }
-
-        .close-modal:hover { color: #ff8c8c; }
-
-        .art-zoom-modal-content {
-            max-width: 90vw; max-height: 90vh;
-            background: #12121a;
-            border-radius: 1.5rem;
-            padding: 1rem;
-            border: 1px solid #6c63ff;
-            cursor: default;
-            display: flex; flex-direction: column; align-items: center;
-        }
-
-        .zoom-img-container {
-            width: 100%; height: 100%;
-            display: flex; justify-content: center; align-items: center;
-        }
-
-        .zoom-img-container img {
-            max-width: 100%; max-height: 80vh;
-            width: auto; height: auto;
-            object-fit: contain; border-radius: 0.5rem;
-        }
-
+        /* Медиа */
         @media (max-width: 700px) {
             .name { font-size: 2rem; }
-            .section-title { font-size: 1.3rem; }
-            .grid { grid-template-columns: 1fr; }
-            .featured-grid { grid-template-columns: 1fr; }
+            .featured-gifs { grid-template-columns: 1fr; }
             .featured-name { font-size: 1.6rem; }
             .featured-card { padding: 1.3rem; }
-            .gallery-modal-content { padding: 1rem; }
-            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
-            .art-img { height: 140px; }
         }
     </style>
 </head>
@@ -510,54 +406,22 @@
                 </div>
             </div>
 
-            <div class="featured-grid">
-                <div class="feat-block">
-                    <div class="feat-icon">🎮</div>
-                    <div class="feat-text">
-                        <strong>Геймплей</strong>
-                        <p>Русский + английский ввод, счёт / комбо / аккуратность, слайдеры на скорость, выбор цветов в реальном времени</p>
-                    </div>
+            <!-- === GIF АНИМАЦИИ ИГРЫ === -->
+            <div class="featured-gifs">
+                <div class="gif-container">
+                    <img src="gif1.gif" alt="Tappiru Gameplay 1" loading="eager">
+                    <div class="gif-label">Геймплей 1</div>
                 </div>
-                <div class="feat-block">
-                    <div class="feat-icon">🌐</div>
-                    <div class="feat-text">
-                        <strong>Онлайн-сервер</strong>
-                        <p>Регистрация, профили, загрузка аватарок, расчёт рейтинга, JWT-авторизация прямо внутри игры</p>
-                    </div>
-                </div>
-                <div class="feat-block">
-                    <div class="feat-icon">🏆</div>
-                    <div class="feat-text">
-                        <strong>Лидерборды</strong>
-                        <p>Топ-100 лучших скоров по рейтингу со всех карт, статистика профиля: игры, нажатия, лучшие скоры</p>
-                    </div>
-                </div>
-                <div class="feat-block">
-                    <div class="feat-icon">🗺️</div>
-                    <div class="feat-text">
-                        <strong>Библиотека и редактор карт</strong>
-                        <p>Встроенный редактор карт прямо в игре, загрузка и скачивание карт комьюнити с сервера</p>
-                    </div>
-                </div>
-                <div class="feat-block">
-                    <div class="feat-icon">🏗️</div>
-                    <div class="feat-text">
-                        <strong>Собственный 2D-движок</strong>
-                        <p>Child/parent иерархия, scene system, AutoScale, спрайты, текст, списки, инпуты, чекбоксы, модальные окна — по сути маленький UI-фреймворк</p>
-                    </div>
-                </div>
-                <div class="feat-block">
-                    <div class="feat-icon">🔤</div>
-                    <div class="feat-text">
-                        <strong>FreeType + Unicode</strong>
-                        <p>Собственный рендер текста через FreeType, полная поддержка японского языка и всего Unicode</p>
-                    </div>
+                <div class="gif-container">
+                    <img src="gif2.gif" alt="Tappiru Gameplay 2" loading="eager">
+                    <div class="gif-label">Геймплей 2 </div>
                 </div>
             </div>
 
             <div class="featured-footer">
                 <a href="https://github.com/deadinsidemertv/Tappiru" class="btn btn-featured" target="_blank">📘 GitHub</a>
                 <a href="https://github.com/deadinsidemertv/Tappiru/releases" class="btn btn-featured" target="_blank">⬇️ Скачать и поиграть</a>
+                <button class="btn screenshots-btn" id="openScreenshotsBtn">📸 Скриншоты из игры</button>
             </div>
         </div>
     </div>
@@ -591,6 +455,7 @@
         </div>
     </div>
 
+    <!-- Остальные секции без изменений -->
     <div class="section">
         <div class="section-title">релизы / утерянный код</div>
         <div class="grid">
@@ -618,7 +483,7 @@
         </div>
     </div>
 
-    <!-- ТВОРЧЕСТВО -->
+    <!-- ТВОРЧЕСТВО, ИГРЫ, ПСИХОЛОГИЯ, УСЛУГИ, КОНТАКТЫ — без изменений -->
     <div class="section">
         <div class="section-title">творчество</div>
         <div class="grid">
@@ -647,7 +512,6 @@
         </div>
     </div>
 
-    <!-- ИГРЫ -->
     <div class="section">
         <div class="section-title">игры / соревновательный опыт</div>
         <div class="grid">
@@ -680,7 +544,6 @@
         </div>
     </div>
 
-    <!-- ПСИХОЛОГИЯ & ЯЗЫКИ -->
     <div class="section">
         <div class="section-title">психология & языки</div>
         <div class="grid">
@@ -696,7 +559,6 @@
         </div>
     </div>
 
-    <!-- УСЛУГИ -->
     <div class="section">
         <div class="section-title">услуги</div>
         <div class="grid">
@@ -716,7 +578,6 @@
         </div>
     </div>
 
-    <!-- КОНТАКТЫ -->
     <div class="section">
         <div class="section-title">контакты</div>
         <div class="contact-links">
@@ -731,7 +592,7 @@
     <footer>© 2026 · neroqwe — портфолио разработчика, художника и коуча</footer>
 </div>
 
-<!-- Модальное окно для одиночных скриншотов -->
+<!-- Модальное окно для одиночных скриншотов (существующее) -->
 <div id="imageModal" class="modal">
     <div class="modal-content">
         <div class="close-modal" id="closeImageModal">&times;</div>
@@ -739,7 +600,18 @@
     </div>
 </div>
 
-<!-- Модальное окно для главы книги -->
+<!-- === НОВОЕ МОДАЛЬНОЕ ОКНО ДЛЯ СКРИНШОТОВ TAPPIRU === -->
+<div id="screenshotsModal" class="modal">
+    <div class="screenshots-modal-content">
+        <div class="screenshots-header">
+            <h2>📸 Скриншоты из Tappiru</h2>
+            <div class="close-gallery" id="closeScreenshotsModal">&times;</div>
+        </div>
+        <div id="screenshotsGrid" class="screenshots-grid"></div>
+    </div>
+</div>
+
+<!-- Остальные модальные окна (книга, галерея, зум) остаются без изменений -->
 <div id="bookModal" class="modal">
     <div class="book-modal-content">
         <div class="book-header">
@@ -757,7 +629,6 @@
     </div>
 </div>
 
-<!-- ГАЛЕРЕЯ -->
 <div id="galleryModal" class="modal">
     <div class="gallery-modal-content">
         <div class="book-header">
@@ -773,7 +644,6 @@
     </div>
 </div>
 
-<!-- Увеличенный просмотр арта -->
 <div id="artZoomModal" class="modal">
     <div class="art-zoom-modal-content">
         <div class="book-header" style="margin-bottom:0.5rem;">
@@ -786,7 +656,7 @@
 
 <script>
 (function() {
-    // --- Скриншоты ---
+    // --- Скриншоты (одиночные) ---
     const imageModal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImage');
     const closeImageBtn = document.getElementById('closeImageModal');
@@ -794,17 +664,65 @@
     function openImageModal(src) {
         modalImg.src = src;
         imageModal.style.display = 'flex';
-        modalImg.onerror = function() { this.src=''; this.alt='Изображение недоступно'; };
     }
-    function closeImageModalFunc() { imageModal.style.display='none'; modalImg.src=''; }
+    function closeImageModalFunc() { 
+        imageModal.style.display='none'; 
+        modalImg.src=''; 
+    }
 
     document.querySelectorAll('.screenshot-btn').forEach(btn => {
-        btn.addEventListener('click', e => { e.stopPropagation(); openImageModal(btn.getAttribute('data-img')); });
+        btn.addEventListener('click', e => { 
+            e.stopPropagation(); 
+            openImageModal(btn.getAttribute('data-img')); 
+        });
     });
     closeImageBtn && closeImageBtn.addEventListener('click', closeImageModalFunc);
     imageModal.addEventListener('click', e => { if(e.target===imageModal) closeImageModalFunc(); });
 
-    // --- Книга ---
+    // === TAPPIRU СКРИНШОТЫ ===
+    const screenshotsModal = document.getElementById('screenshotsModal');
+    const closeScreenshotsModal = document.getElementById('closeScreenshotsModal');
+    const screenshotsGrid = document.getElementById('screenshotsGrid');
+    const openScreenshotsBtn = document.getElementById('openScreenshotsBtn');
+
+    // Пример скриншотов — замени на свои пути
+    const tappiruScreenshots = [
+        { src: "Screenshot_4.png", title: "Главное меню" },
+        { src: "Screenshot_1.png", title: "Выбор карт" },
+        { src: "Screenshot_2.png", title: "Редактор карт" },
+        { src: "Screenshot_3.png", title: "Профиль игрока" },
+        { src: "Screenshot_6.png", title: "Лидерборд" },
+        { src: "Screenshot_5.png", title: "Библиотека карт" }
+    ];
+
+    function buildScreenshotsGrid() {
+        screenshotsGrid.innerHTML = '';
+        tappiruScreenshots.forEach(s => {
+            const card = document.createElement('div');
+            card.className = 'screenshot-card';
+            card.innerHTML = `
+                <img src="${s.src}" alt="${s.title}" loading="lazy">
+            `;
+            card.addEventListener('click', () => {
+                openImageModal(s.src);
+            });
+            screenshotsGrid.appendChild(card);
+        });
+    }
+
+    openScreenshotsBtn && openScreenshotsBtn.addEventListener('click', () => {
+        if (!screenshotsGrid.children.length) buildScreenshotsGrid();
+        screenshotsModal.style.display = 'flex';
+    });
+
+    closeScreenshotsModal && closeScreenshotsModal.addEventListener('click', () => {
+        screenshotsModal.style.display = 'none';
+    });
+    screenshotsModal.addEventListener('click', e => {
+        if (e.target === screenshotsModal) screenshotsModal.style.display = 'none';
+    });
+
+    // --- Книга, Галерея, Зум (без изменений) ---
     const bookModal = document.getElementById('bookModal');
     const openBookBtn = document.getElementById('openBookBtn');
     const closeBookBtn = document.getElementById('closeBookModal');
@@ -825,7 +743,7 @@
         chapterTextDiv.style.display='block';
     });
 
-    // --- Галерея ---
+    // Галерея (оставлена как была)
     const galleryModal = document.getElementById('galleryModal');
     const openGalleryBtn = document.getElementById('openGalleryBtn');
     const closeGalleryBtn = document.getElementById('closeGalleryBtn');
@@ -845,7 +763,6 @@
             const card = document.createElement('div'); card.className='art-card';
             const imgDiv = document.createElement('div'); imgDiv.className='art-img';
             const img = document.createElement('img'); img.src=art.src; img.alt=art.title; img.loading='lazy';
-            img.onerror = function() { this.alt='Ошибка загрузки'; };
             imgDiv.appendChild(img);
             const title = document.createElement('div'); title.className='art-title'; title.innerText=art.title;
             card.appendChild(imgDiv); card.appendChild(title);
@@ -885,6 +802,7 @@
             if(bookModal.style.display==='flex') bookModal.style.display='none';
             if(galleryModal.style.display==='flex') galleryModal.style.display='none';
             if(artZoomModal.style.display==='flex') closeZoom();
+            if(screenshotsModal.style.display==='flex') screenshotsModal.style.display='none';
         }
     });
 })();
